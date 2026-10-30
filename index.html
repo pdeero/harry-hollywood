@@ -1320,7 +1320,8 @@ void main(){
       const state = d.event === 'onStateChange' ? d.info : d.info?.playerState;
       if (state === 1 && !playing) { playing = true; clearInterval(hello); onPlaying(); }
     });
-    return { film: true, toggle(on) { send({ event: 'command', func: on ? 'playVideo' : 'pauseVideo', args: '' }); } };
+    /* Das Reel läuft durch, auch außerhalb des Heros: Nach einer Pause blieben YouTubes Buttons dauerhaft stehen. */
+    return { film: true, toggle() {} };
   }
 
   function setupHero() {
