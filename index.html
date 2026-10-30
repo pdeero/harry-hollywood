@@ -1643,7 +1643,12 @@ void main(){
         clearTimeout(limit);
         removeEventListener('message', onMessage);
       };
-      const reveal = () => { stopWaiting(); loading.remove(); frame.classList.add('is-ready'); };
+      const reveal = () => {
+        stopWaiting();
+        loading.remove();
+        frame.classList.add('is-ready');
+        setTimeout(() => poster.remove(), 300);
+      };
       addEventListener('message', onMessage);
     }
     $('hero-play').addEventListener('click', (e) => { e.preventDefault(); openScreen(e.currentTarget); });
