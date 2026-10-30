@@ -247,6 +247,8 @@ h2 {
 /* Aufmacher: Die stärkste Serie steht groß vor den übrigen Commercials. */
 .reel-feature { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); margin-bottom: clamp(8px, 1vw, 14px); }
 .reel-feature .tile:first-child { grid-row: span 2; aspect-ratio: auto; height: 100%; }
+.reel-4.is-short .tile:nth-child(n+13) { display: none; }
+.reel-more { margin-top: 14px; }
 .reel-label {
   margin: clamp(36px, 5vw, 64px) 0 14px;
   font-family: var(--mono);
@@ -661,32 +663,102 @@ body.legal-page { padding-bottom: 0; }
     </div>
 
     <h3 class="reel-label">Musikvideos</h3>
-    <div class="reel reel-4">
-      <button class="tile" type="button" data-scene="3" data-youtube="Bd7IEZKsOrc" data-poster="https://www.harryhollywood.com/wp-content/uploads/2023/03/HMLM-TN.jpg" data-title="Ra’is – Hass Mich Lieb Mich" data-meta="Musikvideo · 2023">
-        <canvas></canvas><span class="tile-cap"><b>Ra’is – Hass Mich Lieb Mich</b></span>
+    <div class="reel reel-4" id="reel-music">
+      <button class="tile" type="button" data-scene="0" data-youtube="JPYi6y0EdOA" data-title="Ramazan – Mama" data-meta="Musikvideo · 2026">
+        <canvas></canvas><span class="tile-cap"><b>Ramazan – Mama</b><i>2026</i></span>
       </button>
-      <button class="tile" type="button" data-scene="1" data-youtube="hK7za-YguFI" data-poster="https://www.harryhollywood.com/wp-content/uploads/2023/03/LEBENSMUeDE-TN.jpg" data-title="Credibil – Lebensmüde" data-meta="Musikvideo · 2023">
-        <canvas></canvas><span class="tile-cap"><b>Credibil – Lebensmüde</b></span>
+      <button class="tile" type="button" data-scene="1" data-youtube="8e0WEIxFLFg" data-title="Faroon – Head To Toe" data-meta="Musikvideo · 2024">
+        <canvas></canvas><span class="tile-cap"><b>Faroon – Head To Toe</b><i>2024</i></span>
       </button>
-      <button class="tile" type="button" data-scene="0" data-youtube="UAw3pzSJkVA" data-poster="https://www.harryhollywood.com/wp-content/uploads/2023/03/DARLEHEN-TN.jpg" data-title="Credibil – Darlehen" data-meta="Musikvideo · 2023">
-        <canvas></canvas><span class="tile-cap"><b>Credibil – Darlehen</b></span>
+      <button class="tile" type="button" data-scene="2" data-youtube="t702MfdzLOk" data-title="Atay – Spieler" data-meta="Musikvideo · 2024">
+        <canvas></canvas><span class="tile-cap"><b>Atay – Spieler</b><i>2024</i></span>
       </button>
-      <button class="tile" type="button" data-scene="2" data-youtube="CvKgtREJdC8" data-poster="https://www.harryhollywood.com/wp-content/uploads/2023/03/MEDIZIN-TN.jpg" data-title="Loracio – Medizin x Glaub Mir" data-meta="Musikvideo · 2022">
-        <canvas></canvas><span class="tile-cap"><b>Loracio – Medizin x Glaub Mir</b></span>
+      <button class="tile" type="button" data-scene="3" data-youtube="AsNGowfPo9o" data-title="Atay feat. Nimo – Wagwan" data-meta="Musikvideo · 2024">
+        <canvas></canvas><span class="tile-cap"><b>Atay feat. Nimo – Wagwan</b><i>2024</i></span>
       </button>
-      <button class="tile" type="button" data-scene="3" data-youtube="mNK11mIKrJw" data-poster="https://www.harryhollywood.com/wp-content/uploads/2023/02/ETML-TN.jpg" data-title="G-Mac feat. Niqo Nuevo – Es Tut Mir Leid" data-meta="Musikvideo · 2022">
-        <canvas></canvas><span class="tile-cap"><b>G-Mac feat. Niqo Nuevo – Es Tut Mir Leid</b></span>
+      <button class="tile" type="button" data-scene="4" data-youtube="ymlVkjajSRU" data-title="ENO x Olexesh – Gunshot" data-meta="Musikvideo · 2024">
+        <canvas></canvas><span class="tile-cap"><b>ENO x Olexesh – Gunshot</b><i>2024</i></span>
       </button>
-      <button class="tile" type="button" data-scene="1" data-youtube="V8EkSVxE0mo" data-poster="https://www.harryhollywood.com/wp-content/uploads/2023/02/CC-TN-II.jpg" data-title="Jazeek – CC" data-meta="Musikvideo · 2022">
-        <canvas></canvas><span class="tile-cap"><b>Jazeek – CC</b></span>
+      <button class="tile" type="button" data-scene="5" data-youtube="_lfomAYWP4M" data-title="ENO x Nimo – Dilemin" data-meta="Musikvideo · 2024">
+        <canvas></canvas><span class="tile-cap"><b>ENO x Nimo – Dilemin</b><i>2024</i></span>
       </button>
-      <button class="tile" type="button" data-scene="5" data-youtube="tzj8MHu4IyY" data-poster="https://www.harryhollywood.com/wp-content/uploads/2023/03/HUSTLE-FLOW-TN.jpg" data-title="Jamin x Jazeek x OGT – Hustle &amp; Flow" data-meta="Musikvideo · 2022">
-        <canvas></canvas><span class="tile-cap"><b>Jamin x Jazeek x OGT – Hustle &amp; Flow</b></span>
+      <button class="tile" type="button" data-scene="0" data-youtube="U46b4cILr64" data-title="Loracio – Posi’" data-meta="Musikvideo · 2024">
+        <canvas></canvas><span class="tile-cap"><b>Loracio – Posi’</b><i>2024</i></span>
       </button>
-      <button class="tile" type="button" data-scene="4" data-youtube="NmJ2J8G8cSQ" data-poster="https://www.harryhollywood.com/wp-content/uploads/2023/03/FRAGE-ANTWORT-TN.jpg" data-title="NU51 – Frage &amp; Antwort" data-meta="Musikvideo · 2022">
-        <canvas></canvas><span class="tile-cap"><b>NU51 – Frage &amp; Antwort</b></span>
+      <button class="tile" type="button" data-scene="1" data-youtube="wV4vTeaIB5U" data-title="NGEE – Meld Dich" data-meta="Musikvideo · 2024">
+        <canvas></canvas><span class="tile-cap"><b>NGEE – Meld Dich</b><i>2024</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="2" data-youtube="HaSUj8kXeFE" data-title="Illyrix – Mas Suksesit" data-meta="Musikvideo · 2023">
+        <canvas></canvas><span class="tile-cap"><b>Illyrix – Mas Suksesit</b><i>2023</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="3" data-youtube="1lJnE8k3oJY" data-title="Black Moulay – Dankbar" data-meta="Musikvideo · 2023">
+        <canvas></canvas><span class="tile-cap"><b>Black Moulay – Dankbar</b><i>2023</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="4" data-youtube="Rq_m0ULTAyQ" data-title="Jamin – Break Up" data-meta="Musikvideo · 2023">
+        <canvas></canvas><span class="tile-cap"><b>Jamin – Break Up</b><i>2023</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="5" data-youtube="dK2sZ7Npi_w" data-title="Loracio – Suavemente" data-meta="Musikvideo · 2023">
+        <canvas></canvas><span class="tile-cap"><b>Loracio – Suavemente</b><i>2023</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="0" data-youtube="KWQUHJYOch0" data-title="Ra’is &amp; NGEE – Jima" data-meta="Musikvideo · 2023">
+        <canvas></canvas><span class="tile-cap"><b>Ra’is &amp; NGEE – Jima</b><i>2023</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="1" data-youtube="f4HBli7cqfk" data-title="Jazeek – Superstars" data-meta="Musikvideo · 2023">
+        <canvas></canvas><span class="tile-cap"><b>Jazeek – Superstars</b><i>2023</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="2" data-youtube="SdZ1ivoaNLg" data-title="Loracio – Spin My Block" data-meta="Musikvideo · 2023">
+        <canvas></canvas><span class="tile-cap"><b>Loracio – Spin My Block</b><i>2023</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="3" data-youtube="tRswU1HjzTg" data-title="Jazeek – Drop It On Me" data-meta="Musikvideo · 2023">
+        <canvas></canvas><span class="tile-cap"><b>Jazeek – Drop It On Me</b><i>2023</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="4" data-youtube="T4LvhM2dBlU" data-title="Ra’is x Noah – Dunya" data-meta="Musikvideo · 2023">
+        <canvas></canvas><span class="tile-cap"><b>Ra’is x Noah – Dunya</b><i>2023</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="5" data-youtube="wEHWQy9D6I4" data-title="Illyrix – Mayday" data-meta="Musikvideo · 2023">
+        <canvas></canvas><span class="tile-cap"><b>Illyrix – Mayday</b><i>2023</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="0" data-youtube="JAmqOVKwVIg" data-title="Jazeek – Number One" data-meta="Musikvideo · 2023">
+        <canvas></canvas><span class="tile-cap"><b>Jazeek – Number One</b><i>2023</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="1" data-youtube="IuGM69PO0Cs" data-title="Jazeek – Diamond Ring" data-meta="Musikvideo · 2023">
+        <canvas></canvas><span class="tile-cap"><b>Jazeek – Diamond Ring</b><i>2023</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="2" data-youtube="Bd7IEZKsOrc" data-title="Ra’is – Hass Mich Lieb Mich" data-meta="Musikvideo · 2023">
+        <canvas></canvas><span class="tile-cap"><b>Ra’is – Hass Mich Lieb Mich</b><i>2023</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="3" data-youtube="hK7za-YguFI" data-title="Credibil – Lebensmüde" data-meta="Musikvideo · 2023">
+        <canvas></canvas><span class="tile-cap"><b>Credibil – Lebensmüde</b><i>2023</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="4" data-youtube="UAw3pzSJkVA" data-title="Credibil – Darlehen" data-meta="Musikvideo · 2023">
+        <canvas></canvas><span class="tile-cap"><b>Credibil – Darlehen</b><i>2023</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="5" data-youtube="CvKgtREJdC8" data-title="Loracio – Medizin x Glaub Mir" data-meta="Musikvideo · 2022">
+        <canvas></canvas><span class="tile-cap"><b>Loracio – Medizin x Glaub Mir</b><i>2022</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="0" data-youtube="mNK11mIKrJw" data-title="G-Mac feat. Niqo Nuevo – Es Tut Mir Leid" data-meta="Musikvideo · 2022">
+        <canvas></canvas><span class="tile-cap"><b>G-Mac feat. Niqo Nuevo – Es Tut Mir Leid</b><i>2022</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="1" data-youtube="V8EkSVxE0mo" data-title="Jazeek – CC" data-meta="Musikvideo · 2022">
+        <canvas></canvas><span class="tile-cap"><b>Jazeek – CC</b><i>2022</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="2" data-youtube="h_DDP59Bii4" data-title="G-Mac – Bantus BMF" data-meta="Musikvideo · 2022">
+        <canvas></canvas><span class="tile-cap"><b>G-Mac – Bantus BMF</b><i>2022</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="3" data-youtube="tzj8MHu4IyY" data-title="Jamin x Jazeek x OGT – Hustle &amp; Flow" data-meta="Musikvideo · 2022">
+        <canvas></canvas><span class="tile-cap"><b>Jamin x Jazeek x OGT – Hustle &amp; Flow</b><i>2022</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="4" data-youtube="NmJ2J8G8cSQ" data-title="NU51 – Frage &amp; Antwort" data-meta="Musikvideo · 2022">
+        <canvas></canvas><span class="tile-cap"><b>NU51 – Frage &amp; Antwort</b><i>2022</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="5" data-youtube="-qW8JYw346c" data-title="Jazeek – Wunderschön" data-meta="Musikvideo · 2022">
+        <canvas></canvas><span class="tile-cap"><b>Jazeek – Wunderschön</b><i>2022</i></span>
+      </button>
+      <button class="tile" type="button" data-scene="0" data-youtube="gDaUWCQttGU" data-title="Maël &amp; Jonas feat. Nico Traut – The Scientist" data-meta="Musikvideo · 2021">
+        <canvas></canvas><span class="tile-cap"><b>Maël &amp; Jonas feat. Nico Traut – The Scientist</b><i>2021</i></span>
       </button>
     </div>
+    <button class="btn btn-line-paper reel-more" type="button" id="reel-more" aria-expanded="false" hidden>Alle 31 Musikvideos anzeigen</button>
   </section>
 
   <!-- LEISTUNGEN -->
@@ -1442,6 +1514,7 @@ void main(){
       const thumb = (size) => `https://i.ytimg.com/vi/${tile.dataset.youtube}/${size}.jpg`;
       const img = new Image();
       img.alt = '';
+      img.loading = 'lazy';
       img.onerror = () => {
         if (!tile.dataset.poster && !img.src.includes('hqdefault')) img.src = thumb('hqdefault');
         else img.remove();
@@ -1464,6 +1537,18 @@ void main(){
       tile.addEventListener('pointerenter', (e) => { if (e.pointerType !== 'touch') play(); });
       tile.addEventListener('pointerleave', () => cancelAnimationFrame(raf));
       tile.addEventListener('click', () => { cancelAnimationFrame(raf); openScreen(tile); });
+    });
+
+    /* Musikvideos: zuerst die neuesten zwölf, der Rest auf Knopfdruck. */
+    const music = $('reel-music'), more = $('reel-more'), moreLabel = more.textContent;
+    music.classList.add('is-short');
+    more.hidden = false;
+    more.addEventListener('click', () => {
+      const short = music.classList.toggle('is-short');
+      more.textContent = short ? moreLabel : 'Weniger anzeigen';
+      more.setAttribute('aria-expanded', String(!short));
+      if (short) music.previousElementSibling.scrollIntoView();
+      dispatchEvent(new Event('resize'));
     });
 
     const stillAll = () => tiles.forEach(still);
