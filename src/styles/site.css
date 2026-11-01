@@ -628,7 +628,7 @@ body.legal-page { padding-bottom: 0; }
   .screen-info { grid-template-columns: minmax(0, 1fr); }
 }
 /* Handy und Tablet: Clip-Namen passen nicht, die Leiste öffnet die Abschnittsliste. */
-@media (max-width: 960px) {
+@media (max-width: 1023px) {
   .tl-v a { padding: 0; font-size: 0; }
   .tl-menu { display: block; }
 }
