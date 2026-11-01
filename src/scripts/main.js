@@ -326,13 +326,30 @@ void main(){
     const send = (msg) => frame.contentWindow?.postMessage(JSON.stringify(msg), '*');
     let playing = false;
     const hello = setInterval(() => send({ event: 'listening', id: 1, channel: 'widget' }), 500);
-    setTimeout(() => clearInterval(hello), 20000);
+    setTimeout(() => clearInterval(hello), 60000);
+
+    /* Handys ignorieren autoplay oft. Deshalb Start ausdrücklich anfordern,
+       sobald der Player bereit ist und noch einmal bei der ersten Berührung. */
+    const kick = () => {
+      if (playing) return;
+      send({ event: 'command', func: 'mute', args: [] });
+      send({ event: 'command', func: 'playVideo', args: [] });
+    };
+    const gestures = ['pointerdown', 'touchend', 'scroll'];
+    gestures.forEach((name) => addEventListener(name, kick, { passive: true }));
+
     addEventListener('message', (e) => {
       if (e.source !== frame.contentWindow || typeof e.data !== 'string') return;
       let d;
       try { d = JSON.parse(e.data); } catch { return; }
+      if (d.event === 'onReady' || d.event === 'initialDelivery') kick();
       const state = d.event === 'onStateChange' ? d.info : d.info?.playerState;
-      if (state === 1 && !playing) { playing = true; clearInterval(hello); onPlaying(); }
+      if (state === 1 && !playing) {
+        playing = true;
+        clearInterval(hello);
+        gestures.forEach((name) => removeEventListener(name, kick));
+        onPlaying();
+      }
     });
     /* Das Reel läuft durch, auch außerhalb des Heros: Nach einer Pause blieben YouTubes Buttons dauerhaft stehen. */
     return { film: true, toggle() {} };
