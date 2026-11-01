@@ -65,7 +65,7 @@ h2 {
   font-weight: 900;
   font-stretch: 62%;
   text-transform: uppercase;
-  font-size: clamp(56px, 11vw, 188px);
+  font-size: clamp(46px, 11vw, 188px);
   line-height: .9;
   letter-spacing: -.005em;
   text-wrap: balance;
@@ -365,7 +365,7 @@ h2 {
   font-weight: 900;
   font-stretch: 62%;
   text-transform: uppercase;
-  font-size: clamp(52px, 10vw, 170px);
+  font-size: clamp(38px, 10vw, 170px);
   line-height: .92;
   text-wrap: balance;
 }
@@ -627,6 +627,11 @@ body.legal-page { padding-bottom: 0; }
   .contact-grid { grid-template-columns: minmax(0, 1fr); }
   .screen-info { grid-template-columns: minmax(0, 1fr); }
 }
+/* Handy und Tablet: Clip-Namen passen nicht, die Leiste öffnet die Abschnittsliste. */
+@media (max-width: 960px) {
+  .tl-v a { padding: 0; font-size: 0; }
+  .tl-menu { display: block; }
+}
 @media (max-width: 640px) {
   :root { --tl-h: 54px; }
   .reel-2 { grid-template-columns: minmax(0, 1fr); }
@@ -635,8 +640,6 @@ body.legal-page { padding-bottom: 0; }
   .reel-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .reel-4 .tile-cap { padding: 24px 8px 8px; }
   .reel-4 .tile-cap b { font-size: 16px; }
-  .tl-v a { padding: 0; font-size: 0; }
-  .tl-menu { display: block; }
   .tl-read { width: 96px; }
   .tl-tc { font-size: 11px; }
   .hero-title { font-size: 26vw; }
