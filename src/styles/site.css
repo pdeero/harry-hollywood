@@ -522,9 +522,8 @@ h2 {
   font-size: 11px;
   font-weight: 600;
   text-decoration: none;
-  transition: opacity .15s, visibility .15s;
 }
-.tl-cta.is-idle { opacity: 0; visibility: hidden; }
+.tl-cta.is-idle { display: none; }
 
 /* Abschnittsliste auf dem Handy */
 .tl-menu {
@@ -702,7 +701,7 @@ body.legal-page { padding-bottom: 0; }
   .reel-4 .tile-cap { padding: 24px 8px 8px; }
   .reel-4 .tile-cap b { font-size: 16px; }
   .tl { gap: 10px; }
-  .tl-read { width: 80px; }
+  .tl-read { width: 86px; }
   .tl-tc { font-size: 11px; }
   .hero-title { font-size: 26vw; }
   .btn { padding: 11px 14px; }

@@ -786,6 +786,7 @@ void main(){
         name.textContent = secs[cur].dataset.clip;
         /* Im Titel und im Kontakt steht die Anfrage schon im Bild. */
         $('tl-cta').classList.toggle('is-idle', cur === 0 || cur === secs.length - 1);
+        drawWave();
       }
     }
 
