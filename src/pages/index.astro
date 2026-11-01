@@ -1,0 +1,200 @@
+---
+import { getCollection } from 'astro:content';
+import Grundlage from '../layouts/Grundlage.astro';
+import Kachel from '../components/Kachel.astro';
+import home from '../data/startseite.json';
+import { pfad } from '../lib/pfad.js';
+
+// Reihenfolge überall: neueste Veröffentlichung zuerst.
+const videos = (await getCollection('videos'))
+  .map((v) => v.data)
+  .sort((a, b) => b.date - a.date);
+const commercials = videos.filter((v) => v.kind === 'Commercial');
+const music = videos.filter((v) => v.kind === 'Musikvideo');
+const feature = commercials.slice(0, 3);
+const moreCommercials = commercials.slice(3);
+
+const { hero, reel, services, process, harry, clients, contact } = home;
+const clipClass = ['clip-a', 'clip-b', 'clip-c', 'clip-d', 'clip-e'];
+// Ein | im Titel ist eine mögliche Trennstelle.
+const trennbar = (t) => t.replaceAll('|', '­');
+---
+<Grundlage>
+<header class="topbar" id="topbar">
+  <a class="brand" href="#titel" aria-label="Harry Hollywood, zum Seitenanfang">Harry Hollywood</a>
+  <a class="topbar-cta" href="#kontakt">{hero.cta}</a>
+</header>
+
+<main>
+
+  <!-- TITEL: Der Greenscreen. main.js legt den Schriftzug als Maske über die Filme. -->
+  <div class="hero-track" id="titel" data-clip="Titel">
+    <section class="hero" id="hero" aria-label="Harry Hollywood">
+      <div class="hero-film" id="hero-film" data-youtube={hero.reelYoutube} data-file={pfad(hero.reelFile)} aria-hidden="true"></div>
+      <canvas class="hero-canvas" id="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-inner">
+        <h1 class="hero-title" id="hero-title"><span>Harry</span><span>Hollywood</span></h1>
+        <div class="hero-foot" id="hero-foot">
+          <p class="hero-claim">{hero.claim}</p>
+          <div class="hero-actions">
+            <a class="btn btn-ink" id="hero-play" href={`https://www.youtube.com/watch?v=${hero.reelYoutube}`} data-youtube={hero.reelYoutube} data-title={hero.reelTitle} data-meta={hero.reelMeta}>{hero.reelButton}</a>
+            <a class="btn btn-line" href="#kontakt">{hero.cta}</a>
+          </div>
+        </div>
+      </div>
+      <p class="hero-reveal" id="hero-reveal">{hero.reveal}</p>
+    </section>
+  </div>
+
+  <!-- ARBEITEN: Jede Kachel öffnet ein YouTube-Video erst nach dem Klick. -->
+  <section class="sec sec-ink" id="arbeiten" data-clip="Reel">
+    <div class="sec-head">
+      <h2>{reel.heading}</h2>
+      <p class="sec-note">{reel.note}</p>
+    </div>
+
+    <h3 class="reel-label">Commercials</h3>
+    <div class="reel reel-feature">
+      {feature.map((video, i) => <Kachel video={video} scene={i % 6} />)}
+    </div>
+    <div class="reel reel-2">
+      {moreCommercials.map((video, i) => <Kachel video={video} scene={i % 6} />)}
+    </div>
+
+    <h3 class="reel-label">Musikvideos</h3>
+    <div class="reel reel-4" id="reel-music">
+      {music.map((video, i) => <Kachel video={video} scene={i % 6} />)}
+    </div>
+    <button class="btn btn-line-paper reel-more" type="button" id="reel-more" aria-expanded="false" hidden>Alle {music.length} Musikvideos anzeigen</button>
+  </section>
+
+  <!-- LEISTUNGEN -->
+  <section class="sec sec-paper" id="leistungen" data-clip="Leistungen">
+    <div class="sec-head">
+      <h2>{services.heading}</h2>
+    </div>
+    <ul class="crew">
+      {services.items.map((item) => (
+        <li>
+          <h3>{trennbar(item.title)}</h3>
+          <p>{item.text}</p>
+          <p class="crew-out">{item.tags}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- ABLAUF: Eine echte Reihenfolge, deshalb als Schnittspur. -->
+  <section class="sec sec-ink" id="ablauf" data-clip="Ablauf">
+    <div class="sec-head">
+      <h2>{process.heading}</h2>
+    </div>
+    <ol class="track">
+      {process.steps.map((step, i) => (
+        <li class={clipClass[i % clipClass.length]}>
+          {i === 0 && <span class="track-tc">In</span>}
+          {i === process.steps.length - 1 && <span class="track-tc">Out</span>}
+          <h3>{step.title}</h3>
+          <p>{step.text}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <!-- HARRY -->
+  <section class="sec sec-ink sec-harry" id="harry" data-clip="Harry">
+    <figure class="stage">
+      <img src={pfad(harry.photo)} alt={harry.photoAlt} width="2000" height="2000" loading="lazy">
+    </figure>
+    <div class="harry-text">
+      <h2>{harry.heading}</h2>
+      <p class="lead">{harry.lead}</p>
+      {harry.paragraphs.map((p) => <p>{p}</p>)}
+    </div>
+  </section>
+
+  <!-- KUNDEN -->
+  <section class="sec sec-paper" id="kunden" data-clip="Kunden">
+    <blockquote class="quote">
+      <p>„{clients.quote}“</p>
+      <footer>{clients.quoteAuthor}</footer>
+    </blockquote>
+    <p class="clients-label">{clients.label}</p>
+    <ul class="clients">
+      {clients.names.map((name) => <li>{name}</li>)}
+    </ul>
+  </section>
+
+  <!-- KONTAKT: Ohne formEndpoint öffnet das Formular eine vorbereitete E-Mail. -->
+  <section class="sec sec-key" id="kontakt" data-clip="Kontakt">
+    <h2 class="contact-title">{contact.heading}</h2>
+    <div class="contact-grid">
+      <div class="contact-side">
+        <p class="lead">{contact.lead}</p>
+        <ul class="contact-list">
+          <li><a href={`mailto:${contact.mail}`}>{contact.mail}</a></li>
+          <li><a href={`tel:${contact.phone.replaceAll(' ', '')}`}>{contact.phone}</a></li>
+          <li>{contact.address}</li>
+        </ul>
+      </div>
+      <form class="form" id="form" data-endpoint={contact.formEndpoint} data-mail={contact.mail}>
+        <div class="field">
+          <label for="f-name">Name</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="f-mail">E-Mail</label>
+          <input id="f-mail" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="f-art">Worum geht es?</label>
+          <select id="f-art" name="art">
+            {contact.topics.map((topic) => <option>{topic}</option>)}
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-msg">Ihre Idee</label>
+          <textarea id="f-msg" name="nachricht" rows="4" required></textarea>
+        </div>
+        <button class="btn btn-ink" type="submit">Anfrage senden</button>
+        <p class="form-status" id="form-status" role="status"></p>
+        <p class="form-legal">{contact.legalNote} <a href={pfad('/datenschutz/')}>Datenschutzerklärung</a>.</p>
+      </form>
+    </div>
+    <footer class="foot">
+      <span>© <span id="year">2026</span> Harry Hollywood</span>
+      {contact.social.map((s) => <a href={s.url} rel="noopener">{s.label}</a>)}
+      <a href={pfad('/impressum/')}>Impressum</a>
+      <a href={pfad('/datenschutz/')}>Datenschutz</a>
+    </footer>
+  </section>
+
+</main>
+
+<!-- Navigation als Schnitt-Timeline: main.js baut die Clips aus den data-clip-Abschnitten. -->
+<nav class="tl" id="tl" aria-label="Seitenabschnitte">
+  <div class="tl-read">
+    <output class="tl-tc" id="tl-tc" aria-label="Timecode">10:00:00:00</output>
+    <span class="tl-name" id="tl-name">Titel</span>
+  </div>
+  <div class="tl-tracks" id="tl-tracks">
+    <div class="tl-v" id="tl-v"></div>
+    <canvas class="tl-a" id="tl-a" aria-hidden="true"></canvas>
+    <span class="tl-head" id="tl-head" aria-hidden="true"></span>
+  </div>
+</nav>
+
+<dialog class="screen" id="screen" aria-labelledby="screen-title">
+  <div class="screen-frame" id="screen-frame"></div>
+  <div class="screen-info">
+    <div>
+      <h2 id="screen-title"></h2>
+      <p class="screen-meta" id="screen-meta"></p>
+    </div>
+    <a class="btn btn-line-paper" id="screen-link" href="https://www.youtube.com/" rel="noopener" target="_blank">Auf YouTube ansehen</a>
+    <button class="btn btn-line-paper" type="button" id="screen-close">Schließen</button>
+  </div>
+</dialog>
+
+<script src="../scripts/main.js"></script>
+</Grundlage>

@@ -1,0 +1,14 @@
+---
+import Grundlage from './Grundlage.astro';
+import { pfad } from '../lib/pfad.js';
+
+const { title, note } = Astro.props.frontmatter;
+---
+<Grundlage title={`${title} · Harry Hollywood`} bodyClass="legal-page" noindex>
+  <main class="legal">
+    <p class="legal-back"><a href={pfad('/')}>Zurück zur Startseite</a></p>
+    <h1>{title}</h1>
+    {note && <p class="legal-note">{note}</p>}
+    <slot />
+  </main>
+</Grundlage>

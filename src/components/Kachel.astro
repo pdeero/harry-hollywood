@@ -1,0 +1,17 @@
+---
+import { pfad } from '../lib/pfad.js';
+
+const { video, scene } = Astro.props;
+const year = video.date.getUTCFullYear();
+---
+<button
+  class="tile"
+  type="button"
+  data-scene={scene}
+  data-youtube={video.youtube}
+  data-poster={video.poster ? pfad(video.poster) : undefined}
+  data-title={video.longTitle ?? video.title}
+  data-meta={`${video.kind} · ${year}`}
+>
+  <canvas></canvas><span class="tile-cap"><b>{video.title}</b><i>{video.note ?? year}</i></span>
+</button>

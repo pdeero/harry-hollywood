@@ -1,0 +1,176 @@
+backend:
+  name: github
+  repo: pdeero/harry-hollywood
+  branch: main
+
+media_folder: public/bilder
+public_folder: /bilder
+site_url: https://pdeero.github.io/harry-hollywood/
+display_url: https://pdeero.github.io/harry-hollywood/
+
+collections:
+  - name: videos
+    label: Videos
+    label_singular: Video
+    description: Die Seite sortiert automatisch nach Datum, neueste zuerst. Die drei neuesten Commercials stehen groß oben.
+    folder: src/content/videos
+    extension: json
+    format: json
+    create: true
+    delete: true
+    identifier_field: title
+    slug: "{{slug}}"
+    summary: "{{title}} · {{kind}} · {{date}}"
+    sortable_fields:
+      fields: [date, title]
+      default:
+        field: date
+        direction: descending
+    view_groups:
+      - label: Art
+        field: kind
+    fields:
+      - { name: title, label: Titel auf der Kachel, widget: string }
+      - name: kind
+        label: Art
+        widget: select
+        options: [Commercial, Musikvideo]
+      - name: youtube
+        label: YouTube-ID
+        widget: string
+        hint: Der Teil nach v= im YouTube-Link, zum Beispiel WMg4ZLB-MsU
+        pattern: ['^[A-Za-z0-9_-]{11}$', 'Eine YouTube-ID hat genau 11 Zeichen']
+      - name: date
+        label: Veröffentlicht am
+        widget: datetime
+        time_format: false
+        date_format: YYYY-MM-DD
+        format: YYYY-MM-DD
+        hint: Bestimmt die Reihenfolge auf der Seite
+      - { name: longTitle, label: Titel im Video-Fenster, widget: string, required: false, hint: "Nur nötig, wenn er vom Kachel-Titel abweicht" }
+      - { name: note, label: Kleiner Text auf der Kachel, widget: string, required: false, hint: "Leer lassen, dann steht dort das Jahr" }
+      - { name: poster, label: Eigenes Vorschaubild, widget: image, required: false, hint: "Leer lassen, dann kommt das YouTube-Thumbnail" }
+
+  - name: seiten
+    label: Seiten
+    files:
+      - name: startseite
+        label: Startseite
+        file: src/data/startseite.json
+        fields:
+          - name: hero
+            label: Greenscreen oben
+            widget: object
+            fields:
+              - { name: claim, label: Text unter dem Schriftzug, widget: text }
+              - { name: reveal, label: Satz über dem Film beim Scrollen, widget: string }
+              - { name: cta, label: Knopf Anfrage, widget: string }
+              - { name: reelButton, label: Knopf Showreel, widget: string }
+              - { name: reelYoutube, label: YouTube-ID des Showreels, widget: string }
+              - { name: reelTitle, label: Titel des Showreels, widget: string }
+              - { name: reelMeta, label: Kleiner Text zum Showreel, widget: string }
+              - { name: reelFile, label: Showreel als eigene Datei, widget: file, required: false, hint: Eine MP4-Datei ersetzt das YouTube-Video im Schriftzug }
+          - name: reel
+            label: Reel
+            widget: object
+            fields:
+              - { name: heading, label: Überschrift, widget: string }
+              - { name: note, label: Hinweis, widget: string }
+          - name: services
+            label: Leistungen
+            widget: object
+            fields:
+              - { name: heading, label: Überschrift, widget: string }
+              - name: items
+                label: Leistungen
+                label_singular: Leistung
+                widget: list
+                summary: "{{title}}"
+                fields:
+                  - { name: title, label: Name, widget: string, hint: "Ein | markiert eine mögliche Trennstelle, zum Beispiel Post|produktion" }
+                  - { name: text, label: Beschreibung, widget: text }
+                  - { name: tags, label: Stichworte, widget: string }
+          - name: process
+            label: Ablauf
+            widget: object
+            fields:
+              - { name: heading, label: Überschrift, widget: string }
+              - name: steps
+                label: Schritte
+                label_singular: Schritt
+                widget: list
+                summary: "{{title}}"
+                fields:
+                  - { name: title, label: Name, widget: string }
+                  - { name: text, label: Text, widget: text }
+          - name: harry
+            label: Harry
+            widget: object
+            fields:
+              - { name: heading, label: Überschrift, widget: string }
+              - { name: lead, label: Großer Satz, widget: text }
+              - name: paragraphs
+                label: Absätze
+                label_singular: Absatz
+                widget: list
+                field: { name: text, label: Text, widget: text }
+              - { name: photo, label: Foto, widget: image }
+              - { name: photoAlt, label: Bildbeschreibung, widget: string }
+          - name: clients
+            label: Kunden
+            widget: object
+            fields:
+              - { name: quote, label: Zitat, widget: text }
+              - { name: quoteAuthor, label: Zitat von, widget: string }
+              - { name: label, label: Überschrift der Liste, widget: string }
+              - name: names
+                label: Kunden
+                label_singular: Kunde
+                widget: list
+                field: { name: name, label: Name, widget: string }
+          - name: contact
+            label: Kontakt
+            widget: object
+            fields:
+              - { name: heading, label: Überschrift, widget: string }
+              - { name: lead, label: Text, widget: text }
+              - { name: mail, label: E-Mail, widget: string }
+              - { name: phone, label: Telefon, widget: string }
+              - { name: address, label: Adresse, widget: string }
+              - { name: formEndpoint, label: Adresse des Formular-Dienstes, widget: string, required: false, hint: "Leer lassen, dann öffnet das Formular eine fertige E-Mail" }
+              - name: topics
+                label: Themen im Formular
+                label_singular: Thema
+                widget: list
+                field: { name: topic, label: Thema, widget: string }
+              - { name: legalNote, label: Hinweis unter dem Formular, widget: string }
+              - name: social
+                label: Social Media
+                label_singular: Profil
+                widget: list
+                summary: "{{label}}"
+                fields:
+                  - { name: label, label: Name, widget: string }
+                  - { name: url, label: Link, widget: string }
+          - name: seo
+            label: Suche und Teilen
+            widget: object
+            fields:
+              - { name: description, label: Beschreibung für Google, widget: text }
+              - { name: shareText, label: Text beim Teilen, widget: string }
+              - { name: hideFromSearch, label: Von Suchmaschinen ausblenden, widget: boolean, hint: Vor dem echten Start ausschalten }
+      - name: impressum
+        label: Impressum
+        file: src/pages/impressum.md
+        fields:
+          - { name: layout, widget: hidden, default: ../layouts/Recht.astro }
+          - { name: title, label: Titel, widget: string }
+          - { name: body, label: Text, widget: markdown }
+      - name: datenschutz
+        label: Datenschutz
+        file: src/pages/datenschutz.md
+        fields:
+          - { name: layout, widget: hidden, default: ../layouts/Recht.astro }
+          - { name: title, label: Titel, widget: string }
+          - { name: note, label: Hinweis oben, widget: string, required: false }
+          - { name: body, label: Text, widget: markdown }

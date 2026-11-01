@@ -1,23 +1,39 @@
 # Harry Hollywood Website
 
-Statische Seite ohne Build-Schritt. Der Ordner lässt sich so, wie er ist, bei jedem Webhoster hochladen.
+Gebaut mit [Astro](https://astro.build), Inhalte werden über [Sveltia CMS](https://github.com/sveltia/sveltia-cms) gepflegt. Jede Änderung im `main`-Branch wird automatisch über GitHub Actions veröffentlicht.
 
-`index.html` enthält Design, Skript und Schriften direkt in der Datei und läuft auch per Drag and Drop im Browser. Änderungen an der Startseite gehören deshalb in `index.html`. `css/style.css` und `fonts/` werden nur noch von Impressum und Datenschutz genutzt.
+## Inhalte ändern
 
-Per Drag and Drop bleiben im Schriftzug die Animationen, und Videos öffnen sich auf YouTube, weil YouTube ohne Webadresse nicht einbettet. Über einen Webserver läuft alles auf der Seite selbst.
+Unter `/admin/` anmelden und dort Videos, Texte, Bilder und Rechtstexte bearbeiten. Videos sortieren sich automatisch nach Datum, die drei neuesten Commercials stehen groß oben.
 
-Projekte, Leistungen, Kunden und Kontaktdaten stammen von harryhollywood.com und dem YouTube-Kanal.
+Bis ein Login-Dienst eingerichtet ist, läuft die Anmeldung über einen persönlichen GitHub-Zugangsschlüssel.
 
-## Vor dem Go-live
+## Wo was liegt
 
-1. **Showreel als Datei:** Im Schriftzug läuft das Reel noch über YouTube und lädt damit schon beim Seitenaufruf von Google. Besser: Harrys MP4 (ohne Ton, etwa 15 bis 30 MB) nach `video/reel.mp4` legen und in `index.html` bei `hero-film` `data-file="video/reel.mp4"` setzen. Dann entfällt die Verbindung zu YouTube beim Aufruf.
-1. **Vorschaubilder:** Die Kacheln laden ihre Bilder noch von harryhollywood.com (`data-poster` in `index.html`). Bilder in einen Ordner `bilder/` legen und die Pfade anpassen, bevor die alte Seite abgeschaltet wird.
-3. **Formular:** Ohne Formular-Dienst öffnet es eine fertige E-Mail. Für echten Versand die Adresse des Dienstes in `data-endpoint` am `<form>` eintragen.
-4. **Rechtstexte:** Die grünen Felder in `datenschutz.html` ausfüllen und beide Rechtstexte prüfen lassen.
-5. **Texte prüfen:** Der Text über Harry und die Kurzbeschreibungen der Leistungen sind neu formuliert.
+- `src/content/videos/`: ein Eintrag je Video
+- `src/data/startseite.json`: alle Texte der Startseite
+- `src/pages/impressum.md`, `src/pages/datenschutz.md`: Rechtstexte
+- `src/pages/index.astro`: Aufbau der Startseite
+- `src/styles/site.css`, `src/scripts/main.js`: Design und Greenscreen
+- `public/bilder/`: Bilder
+- `public/admin/`: Sveltia CMS
 
 ## Lokal ansehen
 
 ```bash
-npx serve@14 -l 4173 .
+npm install
 ```
+
+```bash
+npm run dev
+```
+
+## Vor dem echten Start
+
+1. **Eigene Domain:** in `astro.config.mjs` `site` setzen, `base` entfernen und die Adressen in `public/admin/config.yml` anpassen.
+2. **Login:** einen Login-Dienst einrichten, damit sich Harry mit seinem GitHub-Konto anmelden kann.
+3. **Showreel als Datei:** Im Schriftzug läuft das Reel noch über YouTube und lädt damit schon beim Seitenaufruf von Google. Im CMS unter Startseite eine MP4-Datei hinterlegen, ohne Ton und etwa 15 bis 30 MB groß.
+4. **Vorschaubilder:** Einige Videos nutzen Bilder von der alten Website. Diese Bilder ins Projekt holen, bevor die alte Seite abgeschaltet wird.
+5. **Formular:** Ohne Formular-Dienst öffnet es eine fertige E-Mail. Für echten Versand die Adresse des Dienstes im CMS eintragen.
+6. **Rechtstexte:** Die offenen Punkte im Datenschutz ausfüllen und beide Rechtstexte prüfen lassen.
+7. **Suchmaschinen:** Im CMS unter Startseite „Von Suchmaschinen ausblenden“ ausschalten.
