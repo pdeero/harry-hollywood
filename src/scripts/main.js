@@ -1,10 +1,17 @@
 /* Harry Hollywood
-   1. Filmszenen (GLSL)   2. Greenscreen   3. Reel   4. Timeline   5. Formular */
+   1. Filmszenen (GLSL)   2. Greenscreen   3. Reel   4. Timeline   5. Formular   6. Einwilligung */
 (() => {
   const $ = (id) => document.getElementById(id);
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const smooth = (a, b, v) => { const t = clamp((v - a) / (b - a)); return t * t * (3 - 2 * t); };
+
+  /* Showreel und Vorschaubilder kommen von YouTube und laden erst nach Zustimmung. */
+  const CONSENT_KEY = 'youtube-einwilligung';
+  const storedConsent = () => { try { return localStorage.getItem(CONSENT_KEY); } catch { return null; } };
+  let consented = storedConsent() === 'ja';
+  const waitingForConsent = [];
+  const whenConsented = (fn) => { if (consented) fn(); else waitingForConsent.push(fn); };
 
   /* ---------- 1. Filmszenen ---------- */
 
@@ -310,6 +317,10 @@ void main(){
     /* Als lokale Datei geöffnet spielt YouTube nichts ab. */
     const id = box.dataset.youtube;
     if (!id || !location.protocol.startsWith('http')) return none;
+    if (!consented) {
+      whenConsented(() => setupHeroReel(onPlaying));
+      return none;
+    }
     const frame = document.createElement('iframe');
     const params = new URLSearchParams({
       autoplay: 1, mute: 1, loop: 1, playlist: id, controls: 0, disablekb: 1, fs: 0,
@@ -501,7 +512,7 @@ void main(){
     addEventListener('scroll', readScroll, { passive: true });
 
     /* Das Showreel liegt hinter dem Canvas und scheint von Anfang an durch die Maske.
-       Nur wenn es gar nicht startet, übernehmen die animierten Szenen. */
+       Ohne Zustimmung oder wenn es gar nicht startet, übernehmen die animierten Szenen. */
     let started = false;
     const reel = setupHeroReel(() => { started = true; live = true; });
     let live = Boolean(reel.film), liveMix = live ? 1 : 0;
@@ -592,8 +603,12 @@ void main(){
         if (!tile.dataset.poster && !img.src.includes('hqdefault')) img.src = thumb('hqdefault');
         else img.remove();
       };
-      img.src = tile.dataset.poster || thumb('maxresdefault');
-      tile.querySelector('canvas').after(img);
+      const showImage = () => {
+        img.src = tile.dataset.poster || thumb('maxresdefault');
+        tile.querySelector('canvas').after(img);
+      };
+      if (tile.dataset.poster) showImage();
+      else whenConsented(showImage);
 
       let raf = 0;
       const canvas = tile.querySelector('canvas');
@@ -864,9 +879,34 @@ void main(){
     });
   }
 
+  /* ---------- 6. Einwilligung ---------- */
+
+  function setupConsent() {
+    const banner = $('consent');
+    const choose = (value) => {
+      try { localStorage.setItem(CONSENT_KEY, value); } catch { /* Dann gilt die Wahl nur bis zum Neuladen. */ }
+      banner.hidden = true;
+      if (value === 'nein') {
+        /* Reel und Bilder laufen dann schon, ein Neuladen entfernt sie vollständig. */
+        if (consented) location.reload();
+        return;
+      }
+      consented = true;
+      waitingForConsent.splice(0).forEach((fn) => fn());
+    };
+    $('consent-yes').addEventListener('click', () => choose('ja'));
+    $('consent-no').addEventListener('click', () => choose('nein'));
+    $('consent-open').addEventListener('click', () => {
+      banner.hidden = false;
+      $('consent-no').focus();
+    });
+    banner.hidden = storedConsent() !== null;
+  }
+
   $('year').textContent = new Date().getFullYear();
   setupHero();
   setupReel();
   setupTimeline();
   setupForm();
+  setupConsent();
 })();

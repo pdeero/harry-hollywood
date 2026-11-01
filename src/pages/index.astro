@@ -172,6 +172,7 @@ const trennbar = (t) => t.replaceAll('|', '­');
       {contact.social.map((s) => <a href={s.url} rel="noopener">{s.label}</a>)}
       <a href={pfad('/impressum/')}>Impressum</a>
       <a href={pfad('/datenschutz/')}>Datenschutz</a>
+      <button type="button" id="consent-open">Cookie-Einstellungen</button>
     </footer>
   </section>
 
@@ -204,6 +205,16 @@ const trennbar = (t) => t.replaceAll('|', '­');
     <button class="btn btn-line-paper" type="button" id="screen-close">Schließen</button>
   </div>
 </dialog>
+
+<!-- Einwilligung: main.js zeigt den Hinweis, solange keine Wahl gespeichert ist. -->
+<section class="consent" id="consent" aria-labelledby="consent-title" hidden>
+  <h2 id="consent-title">Filme von YouTube</h2>
+  <p>Showreel und Vorschaubilder kommen von YouTube. Dabei erhält Google Ihre IP-Adresse, kann Daten auf Ihrem Gerät speichern und in die USA übertragen. Ohne Zustimmung zeigen wir stattdessen unsere Animationen. Einzelne Filme starten Sie jederzeit selbst per Klick. <a href={pfad('/datenschutz/')}>Datenschutz</a></p>
+  <div class="consent-actions">
+    <button class="btn btn-line-paper" type="button" id="consent-no">Ablehnen</button>
+    <button class="btn btn-line-paper" type="button" id="consent-yes">Zustimmen</button>
+  </div>
+</section>
 
 <script src="../scripts/main.js"></script>
 </Grundlage>
