@@ -713,6 +713,7 @@ void main(){
     };
     menu.addEventListener('click', () => showList(list.hidden));
     list.addEventListener('click', (e) => { if (e.target.closest('a')) showList(false); });
+    $('tl-cta').addEventListener('click', () => showList(false));
     addEventListener('keydown', (e) => { if (e.key === 'Escape') showList(false); });
     addEventListener('pointerdown', (e) => {
       if (!list.hidden && !e.target.closest('#tl')) showList(false);
@@ -783,6 +784,8 @@ void main(){
         last = cur;
         [links, entries].forEach((group) => group.forEach((a, i) => a.setAttribute('aria-current', i === cur ? 'true' : 'false')));
         name.textContent = secs[cur].dataset.clip;
+        /* Im Titel und im Kontakt steht die Anfrage schon im Bild. */
+        $('tl-cta').classList.toggle('is-idle', cur === 0 || cur === secs.length - 1);
       }
     }
 
