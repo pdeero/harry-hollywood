@@ -2,8 +2,10 @@
 import '../styles/site.css';
 import home from '../data/startseite.json';
 
-const { title = 'Harry Hollywood', bodyClass, noindex = false } = Astro.props;
+const { title = 'Harry Hollywood · Video & Filmproduktion', bodyClass, noindex = false } = Astro.props;
 const hide = noindex || home.seo.hideFromSearch;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const shareImage = new URL('/bilder/teilen.jpg', Astro.site);
 ---
 <!doctype html>
 <html lang="de">
@@ -15,6 +17,14 @@ const hide = noindex || home.seo.hideFromSearch;
 <meta property="og:title" content={title}>
 <meta property="og:description" content={home.seo.shareText}>
 <meta property="og:type" content="website">
+<meta property="og:url" content={canonical}>
+<meta property="og:image" content={shareImage}>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+{!hide && <link rel="canonical" href={canonical}>}
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#00B140">
 {hide && <meta name="robots" content="noindex">}
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2300B140'/%3E%3Cpath d='M8 7h5v7h6V7h5v18h-5v-7h-6v7H8z' fill='%2308110C'/%3E%3C/svg%3E">

@@ -18,6 +18,8 @@ Die Anmeldung läuft über „Mit GitHub anmelden“ und braucht ein GitHub-Kont
 - `public/bilder/`: Bilder
 - `public/admin/`: Sveltia CMS, selbst gehostet (Version 0.248.0). Für ein Update `sveltia-cms.js` und `chunks/` aus dem npm-Paket `@sveltia/cms` tauschen
 - `public/_headers`: HTTP-Header der Website
+- `public/robots.txt`, `public/sitemap.xml`: Hinweise für Suchmaschinen
+- `public/bilder/teilen.jpg`: Vorschaubild beim Teilen von Links
 
 ## Lokal ansehen
 
