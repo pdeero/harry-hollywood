@@ -73,6 +73,7 @@ collections:
               - { name: reelTitle, label: Titel des Showreels, widget: string }
               - { name: reelMeta, label: Kleiner Text zum Showreel, widget: string }
               - { name: reelFile, label: Showreel im Schriftzug, widget: file, required: false, hint: "MP4 ohne Ton, höchstens 24 MB. Leer lassen, dann laufen die animierten Szenen" }
+              - { name: reelFileMobile, label: Showreel für Handys, widget: file, required: false, hint: "Kleinere MP4-Fassung, etwa 10 bis 12 MB. Leer lassen, dann läuft die große Datei" }
           - name: reel
             label: Reel
             widget: object

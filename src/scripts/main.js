@@ -300,10 +300,23 @@ void main(){
     /* Das Reel liegt als eigene Datei auf der Seite und braucht keine Verbindung zu YouTube. */
     if (!box.dataset.file) return none;
     const v = document.createElement('video');
-    v.src = box.dataset.file;
+    const phone = matchMedia('(max-width: 900px)').matches;
+    v.src = (phone && box.dataset.fileMobile) || box.dataset.file;
+    v.poster = box.dataset.poster;
     v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true;
-    v.addEventListener('playing', onPlaying, { once: true });
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+
+    /* Stromspar- und Datensparmodus blockieren autoplay. Dann startet die erste Berührung das Reel. */
+    const kick = () => { v.play().catch(() => {}); };
+    const gestures = ['pointerdown', 'touchend', 'scroll'];
+    gestures.forEach((name) => addEventListener(name, kick, { passive: true }));
+    v.addEventListener('playing', () => {
+      gestures.forEach((name) => removeEventListener(name, kick));
+      onPlaying();
+    }, { once: true });
     box.append(v);
+    kick();
     return { film: true, toggle(on) { if (on) v.play().catch(() => {}); else v.pause(); } };
   }
 

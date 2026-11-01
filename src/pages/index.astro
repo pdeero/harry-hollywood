@@ -30,7 +30,7 @@ const trennbar = (t) => t.replaceAll('|', '­');
   <!-- TITEL: Der Greenscreen. main.js legt den Schriftzug als Maske über die Filme. -->
   <div class="hero-track" id="titel" data-clip="Titel">
     <section class="hero" id="hero" aria-label="Harry Hollywood">
-      <div class="hero-film" id="hero-film" data-file={pfad(hero.reelFile)} aria-hidden="true"></div>
+      <div class="hero-film" id="hero-film" data-file={pfad(hero.reelFile)} data-file-mobile={pfad(hero.reelFileMobile)} data-poster={pfad('/bilder/showreel-tn.jpg')} aria-hidden="true"></div>
       <canvas class="hero-canvas" id="hero-canvas" aria-hidden="true"></canvas>
       <div class="hero-inner">
         <h1 class="hero-title" id="hero-title"><span>Harry</span><span>Hollywood</span></h1>

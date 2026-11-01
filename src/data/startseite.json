@@ -7,7 +7,8 @@
     "reelYoutube": "WMg4ZLB-MsU",
     "reelTitle": "Showreel 2K23",
     "reelMeta": "Highlights aus 2023 · 2:10",
-    "reelFile": "/bilder/showreel.mp4"
+    "reelFile": "/bilder/showreel.mp4",
+    "reelFileMobile": "/bilder/showreel-mobil.mp4"
   },
   "reel": {
     "heading": "Reel",
