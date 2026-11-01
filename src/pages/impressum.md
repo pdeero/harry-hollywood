@@ -20,4 +20,4 @@ Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: DE34823984
 
 ## Verbraucher&shy;streit&shy;beilegung
 
-Wir nehmen an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teil. Zuständig ist die Universalschlichtungsstelle des Bundes, Zentrum für Schlichtung e.V., Straßburger Straße 8, 77694 Kehl am Rhein (www.universalschlichtungsstelle.de).
+Wir sind zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle weder verpflichtet noch bereit.
