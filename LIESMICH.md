@@ -6,7 +6,7 @@ Gebaut mit [Astro](https://astro.build), Inhalte werden über [Sveltia CMS](http
 
 Unter `/admin/` anmelden und dort Videos, Texte, Bilder und Rechtstexte bearbeiten. Videos sortieren sich automatisch nach Datum, die drei neuesten Commercials stehen groß oben.
 
-Bis ein Login-Dienst eingerichtet ist, läuft die Anmeldung über einen persönlichen GitHub-Zugangsschlüssel.
+Die Anmeldung läuft über „Mit GitHub anmelden“ und braucht ein GitHub-Konto mit Schreibrechten auf dieses Repository. Dahinter stehen die Funktion `functions/api/login.js` und eine OAuth App in den GitHub-Einstellungen mit der Callback-Adresse `https://www.harryhollywood.com/api/login`. Deren Daten liegen bei Cloudflare Pages als `GITHUB_CLIENT_ID` und `GITHUB_CLIENT_SECRET`.
 
 ## Wo was liegt
 
@@ -31,7 +31,7 @@ npm run dev
 ## Vor dem echten Start
 
 1. **Eigene Domain:** bei Cloudflare Pages verbinden, in `astro.config.mjs` `site` setzen und die Adressen in `public/admin/config.yml` anpassen.
-2. **Login:** einen Login-Dienst einrichten, damit sich Harry mit seinem GitHub-Konto anmelden kann.
+2. **Login:** Harrys GitHub-Konto als Mitarbeiter in dieses Repository einladen.
 3. **Showreel als Datei:** Im Schriftzug läuft das Reel noch über YouTube und lädt damit schon beim Seitenaufruf von Google. Im CMS unter Startseite eine MP4-Datei hinterlegen, ohne Ton und etwa 15 bis 30 MB groß.
 4. **Vorschaubilder:** Einige Videos nutzen Bilder von der alten Website. Diese Bilder ins Projekt holen, bevor die alte Seite abgeschaltet wird.
 5. **Formular:** Ohne Formular-Dienst öffnet es eine fertige E-Mail. Für echten Versand die Adresse des Dienstes im CMS eintragen.

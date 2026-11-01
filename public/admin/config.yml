@@ -2,6 +2,9 @@ backend:
   name: github
   repo: pdeero/harry-hollywood
   branch: main
+  base_url: https://www.harryhollywood.com
+  auth_endpoint: api/login
+  auth_scope: public_repo
 
 media_folder: public/bilder
 public_folder: /bilder
