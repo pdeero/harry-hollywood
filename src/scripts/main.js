@@ -688,8 +688,21 @@ void main(){
       return a;
     });
 
-    let starts = [];
+    /* starts: Clip-Anfang auf der Timeline (0 bis 1), stops: dazugehörige Scroll-Position. */
+    let starts = [], stops = [], maxScroll = 1;
     const pad = (n) => String(n).padStart(2, '0');
+
+    /* Clips sind so breit wie ihre Abschnitte lang. Die Abbildung läuft stückweise,
+       damit der Abspielkopf am Seitenende genau am Ende des letzten Clips steht. */
+    const map = (value, from, to, fromEnd) => {
+      let i = 0;
+      from.forEach((v, n) => { if (value >= v) i = n; });
+      const a = from[i], b = i + 1 < from.length ? from[i + 1] : fromEnd;
+      const c = to[i], d = i + 1 < to.length ? to[i + 1] : (fromEnd === 1 ? maxScroll : 1);
+      return b > a ? c + (d - c) * clamp((value - a) / (b - a)) : d;
+    };
+    const toTimeline = (y) => map(y, stops, starts, maxScroll);
+    const toScroll = (p) => map(p, starts, stops, 1);
 
     function drawWave() {
       const r = wave.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2);
@@ -708,8 +721,11 @@ void main(){
     }
 
     function measure() {
-      const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
-      starts = secs.map((s) => clamp((s.getBoundingClientRect().top + scrollY) / max));
+      const total = document.documentElement.scrollHeight;
+      maxScroll = Math.max(1, total - innerHeight);
+      const tops = secs.map((s) => s.getBoundingClientRect().top + scrollY);
+      starts = tops.map((t) => clamp(t / total));
+      stops = tops.map((t) => Math.min(t, maxScroll));
       links.forEach((a, i) => {
         const end = i + 1 < starts.length ? starts[i + 1] : 1;
         a.style.left = `${starts[i] * 100}%`;
@@ -721,8 +737,8 @@ void main(){
 
     let last = -1;
     function update() {
-      const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
-      const p = clamp(scrollY / max);
+      if (!starts.length) return;
+      const p = clamp(toTimeline(scrollY));
       head.style.left = `${p * 100}%`;
       const f = START + Math.round(p * LENGTH * FPS);
       const ss = Math.floor(f / FPS);
@@ -740,8 +756,7 @@ void main(){
     let scrubbing = false;
     const scrub = (e) => {
       const r = tracks.getBoundingClientRect();
-      const max = document.documentElement.scrollHeight - innerHeight;
-      scrollTo({ top: clamp((e.clientX - r.left) / r.width) * max, behavior: 'instant' });
+      scrollTo({ top: toScroll(clamp((e.clientX - r.left) / r.width)), behavior: 'instant' });
     };
     tracks.addEventListener('pointerdown', (e) => {
       if (e.pointerType === 'touch') return;
