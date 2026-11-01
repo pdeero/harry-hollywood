@@ -1,3 +1,5 @@
 # Browser sollen die Seite nur noch verschlüsselt aufrufen.
 /*
   Strict-Transport-Security: max-age=31536000
+  ! NEL
+  ! Report-To
