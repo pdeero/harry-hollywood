@@ -182,6 +182,9 @@ const trennbar = (t) => t.replaceAll('|', '­');
     <canvas class="tl-a" id="tl-a" aria-hidden="true"></canvas>
     <span class="tl-head" id="tl-head" aria-hidden="true"></span>
   </div>
+  <!-- Handy: Ein Tipp auf die Leiste öffnet die Abschnitte mit Namen. -->
+  <button class="tl-menu" id="tl-menu" type="button" aria-expanded="false" aria-controls="tl-list" aria-label="Abschnitte anzeigen"></button>
+  <div class="tl-list" id="tl-list" hidden></div>
 </nav>
 
 <dialog class="screen" id="screen" aria-labelledby="screen-title">

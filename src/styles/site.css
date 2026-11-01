@@ -485,6 +485,45 @@ h2 {
   border-bottom: 0;
 }
 
+/* Abschnittsliste auf dem Handy */
+.tl-menu {
+  display: none;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.tl-menu:focus-visible { outline-offset: -3px; }
+.tl-list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  max-height: calc(100dvh - var(--tl-h) - 16px);
+  overflow-y: auto;
+  background: var(--ink);
+  border-top: 1px solid var(--line);
+}
+.tl-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  min-height: 48px;
+  padding: 0 var(--gr) 0 var(--gl);
+  border-bottom: 1px solid var(--line);
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.tl-list a[aria-current="true"] { background: var(--key); color: var(--ink); }
+.tl-list-tc { font-size: 10px; font-weight: 400; font-variant-numeric: tabular-nums; opacity: .7; }
+
 /* Vorführraum */
 .screen {
   width: min(1180px, calc(100vw - 32px));
@@ -595,6 +634,9 @@ body.legal-page { padding-bottom: 0; }
   .reel-4 .tile-cap { padding: 24px 8px 8px; }
   .reel-4 .tile-cap b { font-size: 16px; }
   .tl-v a { padding: 0; font-size: 0; }
+  .tl-menu { display: block; }
+  .tl-name::after { content: " ▴"; color: var(--key); }
+  .tl:has(.tl-menu[aria-expanded="true"]) .tl-name::after { content: " ▾"; }
   .tl-read { width: 96px; }
   .tl-tc { font-size: 11px; }
   .hero-title { font-size: 26vw; }

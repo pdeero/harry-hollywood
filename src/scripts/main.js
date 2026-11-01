@@ -705,6 +705,31 @@ void main(){
       return a;
     });
 
+    /* Handy: Abschnittsliste mit Namen, die Clips wären zum Tippen zu schmal. */
+    const menu = $('tl-menu'), list = $('tl-list');
+    const entries = secs.map((s) => {
+      const a = document.createElement('a');
+      a.href = `#${s.id}`;
+      const label = document.createElement('span');
+      label.textContent = s.dataset.clip;
+      const time = document.createElement('span');
+      time.className = 'tl-list-tc';
+      a.append(label, time);
+      list.append(a);
+      return a;
+    });
+    const showList = (open) => {
+      list.hidden = !open;
+      menu.setAttribute('aria-expanded', String(open));
+      menu.setAttribute('aria-label', open ? 'Abschnitte schließen' : 'Abschnitte anzeigen');
+    };
+    menu.addEventListener('click', () => showList(list.hidden));
+    list.addEventListener('click', (e) => { if (e.target.closest('a')) showList(false); });
+    addEventListener('keydown', (e) => { if (e.key === 'Escape') showList(false); });
+    addEventListener('pointerdown', (e) => {
+      if (!list.hidden && !e.target.closest('#tl')) showList(false);
+    });
+
     /* starts: Clip-Anfang auf der Timeline (0 bis 1), stops: dazugehörige Scroll-Position. */
     let starts = [], stops = [], maxScroll = 1;
     const pad = (n) => String(n).padStart(2, '0');
@@ -720,6 +745,11 @@ void main(){
     };
     const toTimeline = (y) => map(y, stops, starts, maxScroll);
     const toScroll = (p) => map(p, starts, stops, 1);
+    const timecode = (p) => {
+      const f = START + Math.round(p * LENGTH * FPS);
+      const ss = Math.floor(f / FPS);
+      return `${pad(Math.floor(ss / 3600))}:${pad(Math.floor(ss / 60) % 60)}:${pad(ss % 60)}:${pad(f % FPS)}`;
+    };
 
     function drawWave() {
       const r = wave.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2);
@@ -747,6 +777,7 @@ void main(){
         const end = i + 1 < starts.length ? starts[i + 1] : 1;
         a.style.left = `${starts[i] * 100}%`;
         a.style.width = `${Math.max(0, end - starts[i]) * 100}%`;
+        entries[i].lastChild.textContent = timecode(starts[i]);
       });
       drawWave();
       update();
@@ -757,14 +788,12 @@ void main(){
       if (!starts.length) return;
       const p = clamp(toTimeline(scrollY));
       head.style.left = `${p * 100}%`;
-      const f = START + Math.round(p * LENGTH * FPS);
-      const ss = Math.floor(f / FPS);
-      tc.textContent = `${pad(Math.floor(ss / 3600))}:${pad(Math.floor(ss / 60) % 60)}:${pad(ss % 60)}:${pad(f % FPS)}`;
+      tc.textContent = timecode(p);
       let cur = 0;
       starts.forEach((s, i) => { if (p + 0.002 >= s) cur = i; });
       if (cur !== last) {
         last = cur;
-        links.forEach((a, i) => a.setAttribute('aria-current', i === cur ? 'true' : 'false'));
+        [links, entries].forEach((group) => group.forEach((a, i) => a.setAttribute('aria-current', i === cur ? 'true' : 'false')));
         name.textContent = secs[cur].dataset.clip;
       }
     }
