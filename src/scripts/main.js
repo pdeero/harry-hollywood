@@ -1,25 +1,10 @@
 /* Harry Hollywood
-   1. Filmszenen (GLSL)   2. Greenscreen   3. Reel   4. Timeline   5. Formular   6. Einwilligung */
+   1. Filmszenen (GLSL)   2. Greenscreen   3. Reel   4. Timeline   5. Formular */
 (() => {
   const $ = (id) => document.getElementById(id);
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const smooth = (a, b, v) => { const t = clamp((v - a) / (b - a)); return t * t * (3 - 2 * t); };
-
-  /* Showreel, Vorschaubilder und Filme kommen von YouTube und laden erst nach Zustimmung. */
-  const CONSENT_KEY = 'youtube-einwilligung';
-  const storedConsent = () => { try { return localStorage.getItem(CONSENT_KEY); } catch { return null; } };
-  let consented = storedConsent() === 'ja';
-  const waitingForConsent = [];
-  const whenConsented = (fn) => { if (consented) fn(); else waitingForConsent.push(fn); };
-  let afterConsent = null;
-  const askConsent = (next = null) => {
-    afterConsent = next;
-    if ($('consent').open) return;
-    $('consent').showModal();
-    /* Der Fokus liegt auf dem Dialog, damit keiner der Knöpfe vorausgewählt wirkt. */
-    $('consent').focus();
-  };
 
   /* ---------- 1. Filmszenen ---------- */
 
@@ -312,66 +297,14 @@ void main(){
     const none = { toggle() {} };
     if (reduced) return none;
 
-    /* Eigene Datei (data-file) bevorzugen: Sie braucht keine Verbindung zu YouTube. */
-    if (box.dataset.file) {
-      const v = document.createElement('video');
-      v.src = box.dataset.file;
-      v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true;
-      v.addEventListener('playing', onPlaying, { once: true });
-      box.append(v);
-      return { film: true, toggle(on) { if (on) v.play().catch(() => {}); else v.pause(); } };
-    }
-
-    /* Als lokale Datei geöffnet spielt YouTube nichts ab. */
-    const id = box.dataset.youtube;
-    if (!id || !location.protocol.startsWith('http')) return none;
-    if (!consented) {
-      whenConsented(() => setupHeroReel(onPlaying));
-      return none;
-    }
-    const frame = document.createElement('iframe');
-    const params = new URLSearchParams({
-      autoplay: 1, mute: 1, loop: 1, playlist: id, controls: 0, disablekb: 1, fs: 0,
-      playsinline: 1, rel: 0, iv_load_policy: 3, enablejsapi: 1,
-      ...(location.protocol.startsWith('http') ? { origin: location.origin } : {}),
-    });
-    frame.src = `https://www.youtube-nocookie.com/embed/${id}?${params}`;
-    frame.title = 'Showreel im Hintergrund';
-    frame.allow = 'autoplay; encrypted-media';
-    frame.referrerPolicy = 'strict-origin-when-cross-origin';
-    frame.tabIndex = -1;
-    box.append(frame);
-
-    const send = (msg) => frame.contentWindow?.postMessage(JSON.stringify(msg), '*');
-    let playing = false;
-    const hello = setInterval(() => send({ event: 'listening', id: 1, channel: 'widget' }), 500);
-    setTimeout(() => clearInterval(hello), 60000);
-
-    /* Handys ignorieren autoplay oft. Deshalb Start ausdrücklich anfordern,
-       sobald der Player bereit ist und noch einmal bei der ersten Berührung. */
-    const kick = () => {
-      if (playing) return;
-      send({ event: 'command', func: 'mute', args: [] });
-      send({ event: 'command', func: 'playVideo', args: [] });
-    };
-    const gestures = ['pointerdown', 'touchend', 'scroll'];
-    gestures.forEach((name) => addEventListener(name, kick, { passive: true }));
-
-    addEventListener('message', (e) => {
-      if (e.source !== frame.contentWindow || typeof e.data !== 'string') return;
-      let d;
-      try { d = JSON.parse(e.data); } catch { return; }
-      if (d.event === 'onReady' || d.event === 'initialDelivery') kick();
-      const state = d.event === 'onStateChange' ? d.info : d.info?.playerState;
-      if (state === 1 && !playing) {
-        playing = true;
-        clearInterval(hello);
-        gestures.forEach((name) => removeEventListener(name, kick));
-        onPlaying();
-      }
-    });
-    /* Das Reel läuft durch, auch außerhalb des Heros: Nach einer Pause blieben YouTubes Buttons dauerhaft stehen. */
-    return { film: true, toggle() {} };
+    /* Das Reel liegt als eigene Datei auf der Seite und braucht keine Verbindung zu YouTube. */
+    if (!box.dataset.file) return none;
+    const v = document.createElement('video');
+    v.src = box.dataset.file;
+    v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true;
+    v.addEventListener('playing', onPlaying, { once: true });
+    box.append(v);
+    return { film: true, toggle(on) { if (on) v.play().catch(() => {}); else v.pause(); } };
   }
 
   function setupHero() {
@@ -520,7 +453,7 @@ void main(){
     addEventListener('scroll', readScroll, { passive: true });
 
     /* Das Showreel liegt hinter dem Canvas und scheint von Anfang an durch die Maske.
-       Ohne Zustimmung oder wenn es gar nicht startet, übernehmen die animierten Szenen. */
+       Nur wenn es gar nicht startet, übernehmen die animierten Szenen. */
     let started = false;
     const reel = setupHeroReel(() => { started = true; live = true; });
     let live = Boolean(reel.film), liveMix = live ? 1 : 0;
@@ -602,21 +535,15 @@ void main(){
     };
 
     tiles.forEach((tile) => {
-      /* Vorschaubild: eigenes Bild, sonst das YouTube-Thumbnail. Lädt keins, bleibt die Animation sichtbar. */
-      const thumb = (size) => `https://i.ytimg.com/vi/${tile.dataset.youtube}/${size}.jpg`;
-      const img = new Image();
-      img.alt = '';
-      img.loading = 'lazy';
-      img.onerror = () => {
-        if (!tile.dataset.poster && !img.src.includes('hqdefault')) img.src = thumb('hqdefault');
-        else img.remove();
-      };
-      const showImage = () => {
-        img.src = tile.dataset.poster || thumb('maxresdefault');
+      /* Vorschaubild aus dem Projekt. Fehlt es, bleibt die Animation sichtbar. */
+      if (tile.dataset.poster) {
+        const img = new Image();
+        img.alt = '';
+        img.loading = 'lazy';
+        img.onerror = () => img.remove();
+        img.src = tile.dataset.poster;
         tile.querySelector('canvas').after(img);
-      };
-      if (tile.dataset.poster) showImage();
-      else whenConsented(showImage);
+      }
 
       let raf = 0;
       const canvas = tile.querySelector('canvas');
@@ -652,7 +579,7 @@ void main(){
     let rt = 0;
     addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(stillAll, 160); });
 
-    /* Vorführraum: Das YouTube-Video lädt erst hier, nach Klick und Zustimmung. */
+    /* Vorführraum: Das YouTube-Video lädt erst hier, nach dem Klick. */
     const dlg = $('screen'), frameBox = $('screen-frame');
     let stopWaiting = () => {};
     function openScreen(tile) {
@@ -660,11 +587,6 @@ void main(){
       /* Als lokale Datei geöffnet verweigert YouTube die Einbettung, dann direkt zu YouTube. */
       if (!location.protocol.startsWith('http')) {
         window.open(`https://www.youtube.com/watch?v=${id}`, '_blank', 'noopener');
-        return;
-      }
-      /* Ohne Zustimmung fragen wir nach und starten den gewählten Film direkt danach. */
-      if (!consented) {
-        askConsent(() => openScreen(tile));
         return;
       }
       $('screen-title').textContent = tile.dataset.title;
@@ -682,7 +604,7 @@ void main(){
       poster.className = 'screen-poster';
       poster.alt = '';
       poster.onerror = () => poster.remove();
-      poster.src = tile.querySelector('img')?.src || `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+      poster.src = tile.dataset.poster || '';
       const loading = document.createElement('p');
       loading.className = 'screen-load';
       loading.setAttribute('role', 'status');
@@ -892,40 +814,9 @@ void main(){
     });
   }
 
-  /* ---------- 6. Einwilligung ---------- */
-
-  function setupConsent() {
-    const dialog = $('consent');
-    let decided = storedConsent() !== null;
-    const choose = (value) => {
-      const next = afterConsent;
-      decided = true;
-      try { localStorage.setItem(CONSENT_KEY, value); } catch { /* Dann gilt die Wahl nur bis zum Neuladen. */ }
-      dialog.close();
-      if (value === 'nein') {
-        /* Reel und Bilder laufen dann schon, ein Neuladen entfernt sie vollständig. */
-        if (consented) location.reload();
-        return;
-      }
-      consented = true;
-      waitingForConsent.splice(0).forEach((fn) => fn());
-      next?.();
-    };
-    $('consent-yes').addEventListener('click', () => choose('ja'));
-    $('consent-no').addEventListener('click', () => choose('nein'));
-    $('consent-open').addEventListener('click', () => askConsent());
-    dialog.addEventListener('close', () => {
-      afterConsent = null;
-      /* Beim ersten Besuch braucht es eine Antwort, Escape schließt den Dialog deshalb nicht. */
-      if (!decided) askConsent();
-    });
-    if (!decided) askConsent();
-  }
-
   $('year').textContent = new Date().getFullYear();
   setupHero();
   setupReel();
   setupTimeline();
   setupForm();
-  setupConsent();
 })();

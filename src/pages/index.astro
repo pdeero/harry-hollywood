@@ -30,14 +30,14 @@ const trennbar = (t) => t.replaceAll('|', '­');
   <!-- TITEL: Der Greenscreen. main.js legt den Schriftzug als Maske über die Filme. -->
   <div class="hero-track" id="titel" data-clip="Titel">
     <section class="hero" id="hero" aria-label="Harry Hollywood">
-      <div class="hero-film" id="hero-film" data-youtube={hero.reelYoutube} data-file={pfad(hero.reelFile)} aria-hidden="true"></div>
+      <div class="hero-film" id="hero-film" data-file={pfad(hero.reelFile)} aria-hidden="true"></div>
       <canvas class="hero-canvas" id="hero-canvas" aria-hidden="true"></canvas>
       <div class="hero-inner">
         <h1 class="hero-title" id="hero-title"><span>Harry</span><span>Hollywood</span></h1>
         <div class="hero-foot" id="hero-foot">
           <p class="hero-claim">{hero.claim}</p>
           <div class="hero-actions">
-            <a class="btn btn-ink" id="hero-play" href={`https://www.youtube.com/watch?v=${hero.reelYoutube}`} data-youtube={hero.reelYoutube} data-title={hero.reelTitle} data-meta={hero.reelMeta}>{hero.reelButton}</a>
+            <a class="btn btn-ink" id="hero-play" href={`https://www.youtube.com/watch?v=${hero.reelYoutube}`} data-youtube={hero.reelYoutube} data-poster={pfad('/bilder/showreel-tn.jpg')} data-title={hero.reelTitle} data-meta={hero.reelMeta}>{hero.reelButton}</a>
             <a class="btn btn-line" href="#kontakt">{hero.cta}</a>
           </div>
         </div>
@@ -46,7 +46,7 @@ const trennbar = (t) => t.replaceAll('|', '­');
     </section>
   </div>
 
-  <!-- ARBEITEN: Jede Kachel öffnet ein YouTube-Video erst nach Klick und Zustimmung. -->
+  <!-- ARBEITEN: Die Kacheln zeigen eigene Bilder, YouTube lädt erst im Vorführraum nach dem Klick. -->
   <section class="sec sec-ink" id="arbeiten" data-clip="Reel">
     <div class="sec-head">
       <h2>{reel.heading}</h2>
@@ -172,7 +172,6 @@ const trennbar = (t) => t.replaceAll('|', '­');
       {contact.social.map((s) => <a href={s.url} rel="noopener">{s.label}</a>)}
       <a href={pfad('/impressum/')}>Impressum</a>
       <a href={pfad('/datenschutz/')}>Datenschutz</a>
-      <button type="button" id="consent-open">Cookie-Einstellungen</button>
     </footer>
   </section>
 
@@ -204,18 +203,6 @@ const trennbar = (t) => t.replaceAll('|', '­');
     <a class="btn btn-line-paper" id="screen-link" href="https://www.youtube.com/" rel="noopener" target="_blank">Auf YouTube ansehen</a>
     <button class="btn btn-line-paper" type="button" id="screen-close">Schließen</button>
   </div>
-</dialog>
-
-<!-- Einwilligung: main.js öffnet den Dialog, solange keine Wahl gespeichert ist. Ablehnen bleibt mit einem Klick möglich. -->
-<dialog class="consent" id="consent" aria-labelledby="consent-title" tabindex="-1">
-  <h2 id="consent-title">Film ab?</h2>
-  <p class="consent-lead">Diese Seite lebt von unseren Filmen. Showreel, Vorschaubilder und alle Videos kommen von YouTube und laufen nur mit Ihrer Zustimmung.</p>
-  <p>Dabei erhält Google Ihre IP-Adresse, kann Daten auf Ihrem Gerät speichern und in die USA übertragen. Ohne Zustimmung sehen Sie keine Filme. Ihre Wahl können Sie jederzeit unter „Cookie-Einstellungen“ unten auf der Seite ändern.</p>
-  <div class="consent-actions">
-    <button class="btn btn-line-paper" type="button" id="consent-no">Ablehnen</button>
-    <button class="btn btn-key" type="button" id="consent-yes">Zustimmen und Filme ansehen</button>
-  </div>
-  <p class="consent-links"><a href={pfad('/datenschutz/')}>Datenschutz</a> <a href={pfad('/impressum/')}>Impressum</a></p>
 </dialog>
 
 <script src="../scripts/main.js"></script>

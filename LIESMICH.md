@@ -32,8 +32,10 @@ npm run dev
 
 1. **Eigene Domain:** bei Cloudflare Pages verbinden, in `astro.config.mjs` `site` setzen und die Adressen in `public/admin/config.yml` anpassen.
 2. **Login:** Harrys GitHub-Konto als Mitarbeiter in dieses Repository einladen.
-3. **Showreel als Datei:** Im Schriftzug läuft das Reel noch über YouTube und erscheint deshalb erst nach Zustimmung im Cookie-Hinweis. Im CMS unter Startseite eine MP4-Datei hinterlegen, ohne Ton und etwa 15 bis 30 MB groß, dann läuft es für alle.
-4. **Vorschaubilder:** Einige Videos nutzen Bilder von der alten Website. Diese Bilder ins Projekt holen, bevor die alte Seite abgeschaltet wird.
-5. **Formular:** Ohne Formular-Dienst öffnet es eine fertige E-Mail. Für echten Versand die Adresse des Dienstes im CMS eintragen.
-6. **Rechtstexte:** Beide Rechtstexte prüfen lassen. Wer einen Dienst ergänzt oder das Showreel als Datei einbindet, passt den Datenschutz mit an.
-7. **Suchmaschinen:** Im CMS unter Startseite „Von Suchmaschinen ausblenden“ ausschalten.
+3. **Formular:** Ohne Formular-Dienst öffnet es eine fertige E-Mail. Für echten Versand die Adresse des Dienstes im CMS eintragen.
+4. **Rechtstexte:** Beide Rechtstexte prüfen lassen. Wer einen Dienst ergänzt, passt den Datenschutz mit an.
+5. **Suchmaschinen:** Im CMS unter Startseite „Von Suchmaschinen ausblenden“ ausschalten.
+
+## Filme und Datenschutz
+
+Die Seite braucht keinen Cookie-Hinweis, solange beim Aufruf nichts von YouTube lädt. Showreel und Vorschaubilder liegen deshalb als eigene Dateien in `public/bilder/`. YouTube lädt erst, wenn jemand einen Film anklickt. Bei neuen Videos im CMS ein eigenes Vorschaubild hochladen. Cloudflare Pages nimmt Dateien nur bis 25 MB an, das Showreel muss darunter bleiben.

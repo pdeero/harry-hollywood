@@ -25,9 +25,9 @@ Unser Postfach liegt bei der Raidboxes GmbH, Hafenstraße 32, 48153 Münster. Da
 
 Unsere Filme liegen auf YouTube, einem Dienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Wir binden sie im erweiterten Datenschutzmodus ein.
 
-Das Showreel im Schriftzug der Startseite, die meisten Vorschaubilder und alle Filme laden nur von YouTube, wenn Sie im Hinweis auf der Startseite zustimmen. Ohne Zustimmung zeigen wir stattdessen animierte Szenen und keine Filme. Klicken Sie dann auf einen Film, fragen wir erneut. Nach Ihrer Zustimmung erhält Google unter anderem Ihre IP-Adresse, beim Abspielen kann YouTube außerdem Informationen auf Ihrem Gerät speichern. Google kann Daten auch in die USA übermitteln und nimmt am EU-US Data Privacy Framework teil.
+Das Showreel im Schriftzug der Startseite und alle Vorschaubilder liegen auf unserem eigenen Server, dafür wird keine Verbindung zu YouTube aufgebaut. Ein Film lädt erst von YouTube, wenn Sie ihn anklicken. Erst dann erhält Google unter anderem Ihre IP-Adresse, beim Abspielen kann YouTube außerdem Informationen auf Ihrem Gerät speichern. Google kann Daten auch in die USA übermitteln und nimmt am EU-US Data Privacy Framework teil.
 
-Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Ihre Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen, über „Cookie-Einstellungen“ unten auf der Startseite oder per E-Mail an uns.
+Rechtsgrundlage ist Ihre Einwilligung durch den Klick nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Sie gilt nur für den angeklickten Film. Sie können sie jederzeit mit Wirkung für die Zukunft widerrufen, indem Sie keine weiteren Filme starten.
 
 ## Verwaltungsbereich
 
@@ -35,7 +35,7 @@ Die Inhalte dieser Website pflegen wir über einen Verwaltungsbereich unter /adm
 
 ## Cookies, Tracking, Schriften, Links
 
-Für Besucher setzt diese Website selbst keine Cookies und kein Tracking ein. Ihre Wahl im Hinweis zu YouTube speichern wir nur in Ihrem Browser, damit wir nicht erneut fragen müssen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO und § 25 Abs. 2 TDDDG. Die Schriften liegen auf unserem eigenen Server, es werden keine Daten an Schriftanbieter übertragen. Instagram, YouTube und LinkedIn verlinken wir nur. Diese Dienste erhalten erst dann Daten, wenn Sie einem Link folgen.
+Für Besucher setzt diese Website selbst keine Cookies und kein Tracking ein. Die Schriften liegen auf unserem eigenen Server, es werden keine Daten an Schriftanbieter übertragen. Instagram, YouTube und LinkedIn verlinken wir nur. Diese Dienste erhalten erst dann Daten, wenn Sie einem Link folgen.
 
 ## Ihre Rechte
 

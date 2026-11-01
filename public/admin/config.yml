@@ -52,7 +52,7 @@ collections:
         hint: Bestimmt die Reihenfolge auf der Seite
       - { name: longTitle, label: Titel im Video-Fenster, widget: string, required: false, hint: "Nur nötig, wenn er vom Kachel-Titel abweicht" }
       - { name: note, label: Kleiner Text auf der Kachel, widget: string, required: false, hint: "Leer lassen, dann steht dort das Jahr" }
-      - { name: poster, label: Eigenes Vorschaubild, widget: image, required: false, hint: "Leer lassen, dann kommt das YouTube-Thumbnail" }
+      - { name: poster, label: Eigenes Vorschaubild, widget: image, required: false, hint: "Bitte hochladen, sonst zeigt die Kachel nur eine Animation. YouTube-Bilder laden hier nicht automatisch" }
 
   - name: seiten
     label: Seiten
@@ -69,10 +69,10 @@ collections:
               - { name: reveal, label: Satz über dem Film beim Scrollen, widget: string }
               - { name: cta, label: Knopf Anfrage, widget: string }
               - { name: reelButton, label: Knopf Showreel, widget: string }
-              - { name: reelYoutube, label: YouTube-ID des Showreels, widget: string }
+              - { name: reelYoutube, label: YouTube-ID des Showreels, widget: string, hint: "Für den Knopf Showreel im Filmfenster" }
               - { name: reelTitle, label: Titel des Showreels, widget: string }
               - { name: reelMeta, label: Kleiner Text zum Showreel, widget: string }
-              - { name: reelFile, label: Showreel als eigene Datei, widget: file, required: false, hint: Eine MP4-Datei ersetzt das YouTube-Video im Schriftzug }
+              - { name: reelFile, label: Showreel im Schriftzug, widget: file, required: false, hint: "MP4 ohne Ton, höchstens 24 MB. Leer lassen, dann laufen die animierten Szenen" }
           - name: reel
             label: Reel
             widget: object
