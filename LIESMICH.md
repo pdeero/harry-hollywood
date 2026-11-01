@@ -30,7 +30,7 @@ npm run dev
 
 ## Vor dem echten Start
 
-1. **Eigene Domain:** in `astro.config.mjs` `site` setzen, `base` entfernen und die Adressen in `public/admin/config.yml` anpassen.
+1. **Eigene Domain:** bei Cloudflare Pages verbinden, in `astro.config.mjs` `site` setzen und die Adressen in `public/admin/config.yml` anpassen.
 2. **Login:** einen Login-Dienst einrichten, damit sich Harry mit seinem GitHub-Konto anmelden kann.
 3. **Showreel als Datei:** Im Schriftzug läuft das Reel noch über YouTube und lädt damit schon beim Seitenaufruf von Google. Im CMS unter Startseite eine MP4-Datei hinterlegen, ohne Ton und etwa 15 bis 30 MB groß.
 4. **Vorschaubilder:** Einige Videos nutzen Bilder von der alten Website. Diese Bilder ins Projekt holen, bevor die alte Seite abgeschaltet wird.
