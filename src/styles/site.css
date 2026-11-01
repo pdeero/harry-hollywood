@@ -192,6 +192,8 @@ h2 {
 .btn-line:hover { background: var(--ink); color: var(--paper); }
 .btn-line-paper { border-color: var(--paper); color: var(--paper); }
 .btn-line-paper:hover { background: var(--paper); color: var(--ink); }
+.btn-key { background: var(--key); border-color: var(--key); color: var(--ink); }
+.btn-key:hover { background: var(--spill); border-color: var(--spill); }
 
 /* Abschnitte */
 .sec {
@@ -549,6 +551,21 @@ h2 {
 }
 .screen-frame iframe.is-ready { opacity: 1; }
 .screen-poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.screen-ask {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12px;
+  padding: clamp(14px, 4vw, 48px);
+  background: rgba(8, 17, 12, .78);
+  font-size: clamp(12px, 1.2vw, 16px);
+  line-height: 1.4;
+  overflow: auto;
+}
+.screen-ask p { max-width: 52ch; }
 .screen-load {
   position: absolute;
   left: 18px;

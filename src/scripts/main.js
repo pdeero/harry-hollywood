@@ -579,9 +579,11 @@ void main(){
     let rt = 0;
     addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(stillAll, 160); });
 
-    /* Vorführraum: Das YouTube-Video lädt erst hier, nach dem Klick. */
+    /* Vorführraum: YouTube lädt erst, wenn jemand hier ausdrücklich abspielt.
+       Das gilt bis zum Neuladen der Seite, gespeichert wird nichts. */
     const dlg = $('screen'), frameBox = $('screen-frame');
     let stopWaiting = () => {};
+    let youtubeAllowed = false;
     function openScreen(tile) {
       const id = tile.dataset.youtube;
       /* Als lokale Datei geöffnet verweigert YouTube die Einbettung, dann direkt zu YouTube. */
@@ -592,25 +594,42 @@ void main(){
       $('screen-title').textContent = tile.dataset.title;
       $('screen-meta').textContent = tile.dataset.meta;
       $('screen-link').href = `https://www.youtube.com/watch?v=${id}`;
-      const frame = document.createElement('iframe');
-      const params = new URLSearchParams({ autoplay: 1, rel: 0, playsinline: 1, enablejsapi: 1, origin: location.origin });
-      frame.src = `https://www.youtube-nocookie.com/embed/${id}?${params}`;
-      frame.title = tile.dataset.title;
-      frame.allow = 'autoplay; fullscreen; picture-in-picture; encrypted-media';
-      frame.allowFullscreen = true;
 
-      /* Bis YouTube bereit ist, stehen Vorschaubild und Ladeanzeige im Fenster. */
       const poster = new Image();
       poster.className = 'screen-poster';
       poster.alt = '';
       poster.onerror = () => poster.remove();
       poster.src = tile.dataset.poster || '';
+
+      if (youtubeAllowed) {
+        playFilm(tile, poster);
+        dlg.showModal();
+        return;
+      }
+      const ask = $('screen-ask').content.firstElementChild.cloneNode(true);
+      ask.querySelector('button').addEventListener('click', () => {
+        youtubeAllowed = true;
+        playFilm(tile, poster);
+      });
+      frameBox.replaceChildren(poster, ask);
+      dlg.showModal();
+      ask.querySelector('button').focus();
+    }
+
+    function playFilm(tile, poster) {
+      const frame = document.createElement('iframe');
+      const params = new URLSearchParams({ autoplay: 1, rel: 0, playsinline: 1, enablejsapi: 1, origin: location.origin });
+      frame.src = `https://www.youtube-nocookie.com/embed/${tile.dataset.youtube}?${params}`;
+      frame.title = tile.dataset.title;
+      frame.allow = 'autoplay; fullscreen; picture-in-picture; encrypted-media';
+      frame.allowFullscreen = true;
+
+      /* Bis YouTube bereit ist, stehen Vorschaubild und Ladeanzeige im Fenster. */
       const loading = document.createElement('p');
       loading.className = 'screen-load';
       loading.setAttribute('role', 'status');
       loading.textContent = 'Film lädt';
       frameBox.replaceChildren(poster, loading, frame);
-      dlg.showModal();
 
       const onMessage = (e) => {
         if (e.source !== frame.contentWindow || typeof e.data !== 'string') return;

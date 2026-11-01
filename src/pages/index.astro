@@ -205,5 +205,13 @@ const trennbar = (t) => t.replaceAll('|', '­');
   </div>
 </dialog>
 
+<!-- Vor dem ersten Film im Vorführraum: Erst dieser Klick verbindet mit YouTube. -->
+<template id="screen-ask">
+  <div class="screen-ask">
+    <p>Dieser Film liegt auf YouTube. Beim Abspielen erhält Google Ihre IP-Adresse, kann Daten auf Ihrem Gerät speichern und in die USA übertragen. <a href={pfad('/datenschutz/')}>Datenschutz</a></p>
+    <button class="btn btn-key" type="button">Film abspielen</button>
+  </div>
+</template>
+
 <script src="../scripts/main.js"></script>
 </Grundlage>
