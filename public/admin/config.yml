@@ -5,8 +5,8 @@ backend:
 
 media_folder: public/bilder
 public_folder: /bilder
-site_url: https://harry-hollywood.pages.dev/
-display_url: https://harry-hollywood.pages.dev/
+site_url: https://www.harryhollywood.com/
+display_url: https://www.harryhollywood.com/
 
 collections:
   - name: videos
@@ -138,6 +138,7 @@ collections:
               - { name: phone, label: Telefon, widget: string }
               - { name: address, label: Adresse, widget: string }
               - { name: formEndpoint, label: Adresse des Formular-Dienstes, widget: string, required: false, hint: "Leer lassen, dann öffnet das Formular eine fertige E-Mail" }
+              - { name: turnstileKey, label: Turnstile-Websiteschlüssel, widget: string, required: false, hint: "Öffentlicher Schlüssel für den Spam-Schutz" }
               - name: topics
                 label: Themen im Formular
                 label_singular: Thema

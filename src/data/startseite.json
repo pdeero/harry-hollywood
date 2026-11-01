@@ -114,7 +114,7 @@
     "mail": "hello@harryhollywood.com",
     "phone": "+49 172 153 9054",
     "address": "Niederberger Höhe 25, 56077 Koblenz",
-    "formEndpoint": "",
+    "formEndpoint": "/api/anfrage",
     "topics": [
       "Commercial",
       "Musikvideo",
@@ -139,11 +139,12 @@
         "label": "LinkedIn",
         "url": "https://www.linkedin.com/in/harryhollywood/"
       }
-    ]
+    ],
+    "turnstileKey": ""
   },
   "seo": {
     "description": "Harry Hollywood aus Koblenz produziert Commercials, Musikvideos, Imagefilme, Recruiting-Videos, Social Content, Eventfilme und Postproduktion.",
     "shareText": "Commercials, Musikvideos und Filme für Unternehmen.",
-    "hideFromSearch": true
+    "hideFromSearch": false
   }
 }

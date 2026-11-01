@@ -1,0 +1,9 @@
+# Adressen der alten WordPress-Seite
+/datenschutzerklaerung /datenschutz/ 301
+/datenschutzerklaerung/ /datenschutz/ 301
+/portfolio-item/* /#arbeiten 301
+/portfolio-category/* /#arbeiten 301
+/portfolio/ /#arbeiten 301
+/portfolio /#arbeiten 301
+/wp-admin/* / 301
+/wp-login.php / 301

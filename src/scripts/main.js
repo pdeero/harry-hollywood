@@ -844,6 +844,9 @@ void main(){
         status.textContent = `Ihr E-Mail-Programm öffnet sich mit der fertigen Anfrage. Falls nicht, schreiben Sie an ${form.dataset.mail}.`;
         return;
       }
+      const button = form.querySelector('button[type="submit"]');
+      button.disabled = true;
+      status.textContent = 'Anfrage wird gesendet.';
       try {
         const res = await fetch(url, {
           method: 'POST',
@@ -856,6 +859,8 @@ void main(){
       } catch {
         status.textContent = `Das hat nicht geklappt. Bitte schreiben Sie an ${form.dataset.mail}.`;
       }
+      window.turnstile?.reset();
+      button.disabled = false;
     });
   }
 

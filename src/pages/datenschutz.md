@@ -1,7 +1,6 @@
 ---
 layout: ../layouts/Recht.astro
 title: Datenschutz
-note: Vorlage. Vor dem Go-live die offenen Punkte in eckigen Klammern ausfüllen und rechtlich prüfen lassen, vor allem sobald Hosting und Formular-Dienst feststehen.
 ---
 
 ## Verantwortlicher
@@ -10,15 +9,15 @@ Harry Filbert, Niederberger Höhe 25, 56077 Koblenz, hello@harryhollywood.com
 
 ## Hosting
 
-Diese Website liegt bei **[Name und Anschrift des Hosters ergänzen]**. Beim Aufruf verarbeitet der Hoster technische Daten wie IP-Adresse, Zeitpunkt und aufgerufene Seite, um die Website auszuliefern und abzusichern. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.
+Diese Website liegt bei Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, USA. Beim Aufruf verarbeitet Cloudflare technische Daten wie IP-Adresse, Zeitpunkt und aufgerufene Seite, um die Website auszuliefern und abzusichern. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO.
 
-## Kontakt
+## Kontaktformular
 
-Wenn Sie uns schreiben, verarbeiten wir Name, E-Mail-Adresse und Nachricht, um Ihre Anfrage zu beantworten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO. **[Speicherdauer ergänzen]**
+Wenn Sie uns über das Formular schreiben, verarbeiten wir Name, E-Mail-Adresse, Thema und Nachricht, um Ihre Anfrage zu beantworten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO. Die Anfrage wird über Cloudflare verarbeitet und über den E-Mail-Dienst Resend an uns zugestellt. Zum Schutz vor Spam kann Cloudflare Turnstile eingesetzt werden. Wir löschen Ihre Anfrage, sobald sie abschließend bearbeitet ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
 
 ## YouTube-Videos
 
-Unsere Filme liegen auf YouTube, einem Dienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Das Showreel im Schriftzug der Startseite und einige Vorschaubilder laden beim Aufruf der Seite von YouTube, alle anderen Filme erst nach Ihrem Klick. Dabei erhält YouTube unter anderem Ihre IP-Adresse. **[Rechtsgrundlage klären: Für das automatisch ladende Reel ist voraussichtlich eine Einwilligung nötig. Der Absatz entfällt teilweise, wenn das Reel als eigene Datei auf dem Server liegt.]**
+Unsere Filme liegen auf YouTube, einem Dienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Das Showreel im Schriftzug der Startseite und einige Vorschaubilder laden beim Aufruf der Seite von YouTube, alle anderen Filme erst nach Ihrem Klick. Dabei erhält YouTube unter anderem Ihre IP-Adresse. Rechtsgrundlage für die Einbindung des Showreels ist unser berechtigtes Interesse an der Darstellung unserer Arbeit nach Art. 6 Abs. 1 lit. f DSGVO, für die weiteren Filme Ihre Einwilligung durch den Klick nach Art. 6 Abs. 1 lit. a DSGVO.
 
 ## Cookies, Tracking, Schriften
 
