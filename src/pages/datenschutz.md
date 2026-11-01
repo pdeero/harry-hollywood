@@ -25,9 +25,9 @@ Unser Postfach liegt bei der Raidboxes GmbH, Hafenstraße 32, 48153 Münster. Da
 
 Unsere Filme liegen auf YouTube, einem Dienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Wir binden sie im erweiterten Datenschutzmodus ein.
 
-Das Showreel im Schriftzug der Startseite und die meisten Vorschaubilder laden nur von YouTube, wenn Sie im Hinweis auf der Startseite zustimmen. Ohne Zustimmung zeigen wir stattdessen animierte Szenen. Einzelne Filme laden erst nach Ihrem Klick. Dabei erhält Google unter anderem Ihre IP-Adresse, beim Abspielen kann YouTube außerdem Informationen auf Ihrem Gerät speichern. Google kann Daten auch in die USA übermitteln und nimmt am EU-US Data Privacy Framework teil.
+Das Showreel im Schriftzug der Startseite, die meisten Vorschaubilder und alle Filme laden nur von YouTube, wenn Sie im Hinweis auf der Startseite zustimmen. Ohne Zustimmung zeigen wir stattdessen animierte Szenen und keine Filme. Klicken Sie dann auf einen Film, fragen wir erneut. Nach Ihrer Zustimmung erhält Google unter anderem Ihre IP-Adresse, beim Abspielen kann YouTube außerdem Informationen auf Ihrem Gerät speichern. Google kann Daten auch in die USA übermitteln und nimmt am EU-US Data Privacy Framework teil.
 
-Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG, für das Showreel und die Vorschaubilder durch Ihre Zustimmung im Hinweis, für einzelne Filme durch Ihren Klick. Ihre Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen, über „Cookie-Einstellungen“ unten auf der Startseite oder per E-Mail an uns.
+Rechtsgrundlage ist Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Ihre Einwilligung können Sie jederzeit mit Wirkung für die Zukunft widerrufen, über „Cookie-Einstellungen“ unten auf der Startseite oder per E-Mail an uns.
 
 ## Verwaltungsbereich
 

@@ -6,12 +6,20 @@
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const smooth = (a, b, v) => { const t = clamp((v - a) / (b - a)); return t * t * (3 - 2 * t); };
 
-  /* Showreel und Vorschaubilder kommen von YouTube und laden erst nach Zustimmung. */
+  /* Showreel, Vorschaubilder und Filme kommen von YouTube und laden erst nach Zustimmung. */
   const CONSENT_KEY = 'youtube-einwilligung';
   const storedConsent = () => { try { return localStorage.getItem(CONSENT_KEY); } catch { return null; } };
   let consented = storedConsent() === 'ja';
   const waitingForConsent = [];
   const whenConsented = (fn) => { if (consented) fn(); else waitingForConsent.push(fn); };
+  let afterConsent = null;
+  const askConsent = (next = null) => {
+    afterConsent = next;
+    if ($('consent').open) return;
+    $('consent').showModal();
+    /* Der Fokus liegt auf dem Dialog, damit keiner der Knöpfe vorausgewählt wirkt. */
+    $('consent').focus();
+  };
 
   /* ---------- 1. Filmszenen ---------- */
 
@@ -644,7 +652,7 @@ void main(){
     let rt = 0;
     addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(stillAll, 160); });
 
-    /* Vorführraum: Das YouTube-Video lädt erst hier, nach dem Klick. */
+    /* Vorführraum: Das YouTube-Video lädt erst hier, nach Klick und Zustimmung. */
     const dlg = $('screen'), frameBox = $('screen-frame');
     let stopWaiting = () => {};
     function openScreen(tile) {
@@ -652,6 +660,11 @@ void main(){
       /* Als lokale Datei geöffnet verweigert YouTube die Einbettung, dann direkt zu YouTube. */
       if (!location.protocol.startsWith('http')) {
         window.open(`https://www.youtube.com/watch?v=${id}`, '_blank', 'noopener');
+        return;
+      }
+      /* Ohne Zustimmung fragen wir nach und starten den gewählten Film direkt danach. */
+      if (!consented) {
+        askConsent(() => openScreen(tile));
         return;
       }
       $('screen-title').textContent = tile.dataset.title;
@@ -882,10 +895,13 @@ void main(){
   /* ---------- 6. Einwilligung ---------- */
 
   function setupConsent() {
-    const banner = $('consent');
+    const dialog = $('consent');
+    let decided = storedConsent() !== null;
     const choose = (value) => {
+      const next = afterConsent;
+      decided = true;
       try { localStorage.setItem(CONSENT_KEY, value); } catch { /* Dann gilt die Wahl nur bis zum Neuladen. */ }
-      banner.hidden = true;
+      dialog.close();
       if (value === 'nein') {
         /* Reel und Bilder laufen dann schon, ein Neuladen entfernt sie vollständig. */
         if (consented) location.reload();
@@ -893,14 +909,17 @@ void main(){
       }
       consented = true;
       waitingForConsent.splice(0).forEach((fn) => fn());
+      next?.();
     };
     $('consent-yes').addEventListener('click', () => choose('ja'));
     $('consent-no').addEventListener('click', () => choose('nein'));
-    $('consent-open').addEventListener('click', () => {
-      banner.hidden = false;
-      $('consent-no').focus();
+    $('consent-open').addEventListener('click', () => askConsent());
+    dialog.addEventListener('close', () => {
+      afterConsent = null;
+      /* Beim ersten Besuch braucht es eine Antwort, Escape schließt den Dialog deshalb nicht. */
+      if (!decided) askConsent();
     });
-    banner.hidden = storedConsent() !== null;
+    if (!decided) askConsent();
   }
 
   $('year').textContent = new Date().getFullYear();

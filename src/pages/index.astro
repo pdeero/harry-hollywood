@@ -46,7 +46,7 @@ const trennbar = (t) => t.replaceAll('|', '­');
     </section>
   </div>
 
-  <!-- ARBEITEN: Jede Kachel öffnet ein YouTube-Video erst nach dem Klick. -->
+  <!-- ARBEITEN: Jede Kachel öffnet ein YouTube-Video erst nach Klick und Zustimmung. -->
   <section class="sec sec-ink" id="arbeiten" data-clip="Reel">
     <div class="sec-head">
       <h2>{reel.heading}</h2>
@@ -206,15 +206,17 @@ const trennbar = (t) => t.replaceAll('|', '­');
   </div>
 </dialog>
 
-<!-- Einwilligung: main.js zeigt den Hinweis, solange keine Wahl gespeichert ist. -->
-<section class="consent" id="consent" aria-labelledby="consent-title" hidden>
-  <h2 id="consent-title">Filme von YouTube</h2>
-  <p>Showreel und Vorschaubilder kommen von YouTube. Dabei erhält Google Ihre IP-Adresse, kann Daten auf Ihrem Gerät speichern und in die USA übertragen. Ohne Zustimmung zeigen wir stattdessen unsere Animationen. Einzelne Filme starten Sie jederzeit selbst per Klick. <a href={pfad('/datenschutz/')}>Datenschutz</a></p>
+<!-- Einwilligung: main.js öffnet den Dialog, solange keine Wahl gespeichert ist. Ablehnen bleibt mit einem Klick möglich. -->
+<dialog class="consent" id="consent" aria-labelledby="consent-title" tabindex="-1">
+  <h2 id="consent-title">Film ab?</h2>
+  <p class="consent-lead">Diese Seite lebt von unseren Filmen. Showreel, Vorschaubilder und alle Videos kommen von YouTube und laufen nur mit Ihrer Zustimmung.</p>
+  <p>Dabei erhält Google Ihre IP-Adresse, kann Daten auf Ihrem Gerät speichern und in die USA übertragen. Ohne Zustimmung sehen Sie keine Filme. Ihre Wahl können Sie jederzeit unter „Cookie-Einstellungen“ unten auf der Seite ändern.</p>
   <div class="consent-actions">
     <button class="btn btn-line-paper" type="button" id="consent-no">Ablehnen</button>
-    <button class="btn btn-line-paper" type="button" id="consent-yes">Zustimmen</button>
+    <button class="btn btn-key" type="button" id="consent-yes">Zustimmen und Filme ansehen</button>
   </div>
-</section>
+  <p class="consent-links"><a href={pfad('/datenschutz/')}>Datenschutz</a> <a href={pfad('/impressum/')}>Impressum</a></p>
+</dialog>
 
 <script src="../scripts/main.js"></script>
 </Grundlage>
