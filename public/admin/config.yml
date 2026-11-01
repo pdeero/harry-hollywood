@@ -5,8 +5,8 @@ backend:
 
 media_folder: public/bilder
 public_folder: /bilder
-site_url: https://pdeero.github.io/harry-hollywood/
-display_url: https://pdeero.github.io/harry-hollywood/
+site_url: https://harry-hollywood.pages.dev/
+display_url: https://harry-hollywood.pages.dev/
 
 collections:
   - name: videos

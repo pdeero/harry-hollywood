@@ -1,6 +1,6 @@
 # Harry Hollywood Website
 
-Gebaut mit [Astro](https://astro.build), Inhalte werden über [Sveltia CMS](https://github.com/sveltia/sveltia-cms) gepflegt. Jede Änderung im `main`-Branch wird automatisch über GitHub Actions veröffentlicht.
+Gebaut mit [Astro](https://astro.build), Inhalte werden über [Sveltia CMS](https://github.com/sveltia/sveltia-cms) gepflegt. Die Seite läuft auf Cloudflare Pages unter https://harry-hollywood.pages.dev/. Jede Änderung im `main`-Branch wird dort automatisch gebaut und veröffentlicht.
 
 ## Inhalte ändern
 
