@@ -600,7 +600,7 @@ h2 {
   font-weight: 900;
   font-stretch: 62%;
   text-transform: uppercase;
-  font-size: clamp(42px, 13vw, 120px);
+  font-size: clamp(42px, 13vw, 96px);
   line-height: .9;
   margin-bottom: 32px;
 }
