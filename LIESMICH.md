@@ -35,5 +35,5 @@ npm run dev
 3. **Showreel als Datei:** Im Schriftzug läuft das Reel noch über YouTube und lädt damit schon beim Seitenaufruf von Google. Im CMS unter Startseite eine MP4-Datei hinterlegen, ohne Ton und etwa 15 bis 30 MB groß.
 4. **Vorschaubilder:** Einige Videos nutzen Bilder von der alten Website. Diese Bilder ins Projekt holen, bevor die alte Seite abgeschaltet wird.
 5. **Formular:** Ohne Formular-Dienst öffnet es eine fertige E-Mail. Für echten Versand die Adresse des Dienstes im CMS eintragen.
-6. **Rechtstexte:** Die offenen Punkte im Datenschutz ausfüllen und beide Rechtstexte prüfen lassen.
+6. **Rechtstexte:** Beide Rechtstexte prüfen lassen. Wer einen Dienst ergänzt oder das Showreel als Datei einbindet, passt den Datenschutz mit an.
 7. **Suchmaschinen:** Im CMS unter Startseite „Von Suchmaschinen ausblenden“ ausschalten.
