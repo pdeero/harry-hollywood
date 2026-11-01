@@ -19,7 +19,7 @@ Wenn Sie uns über das Formular schreiben, verarbeiten wir Name, E-Mail-Adresse,
 
 Die Anfrage wird über Cloudflare verarbeitet und über den E-Mail-Dienst Resend der Plus Five Five, Inc., 2261 Market Street #5039, San Francisco, CA 94114, USA, an uns zugestellt. Auch dieses Unternehmen nimmt am EU-US Data Privacy Framework teil.
 
-Unser Postfach liegt bei der Raidboxes GmbH, Hafenstraße 32, 48153 Münster. Das gilt auch, wenn Sie uns direkt per E-Mail schreiben. Wir löschen Ihre Anfrage, sobald sie abschließend bearbeitet ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
+Anfragen über das Formular erreichen uns in einem Postfach bei Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Unser Postfach hello@harryhollywood.com für direkte E-Mails liegt bei der Raidboxes GmbH, Hafenstraße 32, 48153 Münster. Wir löschen Ihre Anfrage, sobald sie abschließend bearbeitet ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
 
 ## YouTube-Videos
 
