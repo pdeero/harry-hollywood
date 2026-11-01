@@ -18,6 +18,6 @@ E-Mail: hello@harryhollywood.com
 
 Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: DE348239844
 
-## Verbraucherstreitbeilegung
+## Verbraucher&shy;streit&shy;beilegung
 
 Wir nehmen an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teil. Zuständig ist die Universalschlichtungsstelle des Zentrums für Schlichtung e.V., Straßburger Straße 8, 77694 Kehl am Rhein (www.verbraucher-schlichter.de).
