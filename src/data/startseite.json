@@ -1,13 +1,8 @@
 {
-  "seo": {
-    "description": "Harry Hollywood aus Koblenz produziert Commercials, Musikvideos, Imagefilme, Recruiting-Videos, Social Content, Eventfilme und Postproduktion.",
-    "shareText": "Commercials, Musikvideos und Filme für Unternehmen aus Koblenz.",
-    "hideFromSearch": true
-  },
   "hero": {
-    "cta": "Erstgespräch anfragen",
     "claim": "Commercials, Musikvideos und Filme für Unternehmen aus Koblenz. Wir produzieren für Sie.",
     "reveal": "Hier beginnt Ihr Film.",
+    "cta": "Erstgespräch anfragen",
     "reelButton": "Showreel ansehen",
     "reelYoutube": "WMg4ZLB-MsU",
     "reelTitle": "Showreel 2K23",
@@ -21,23 +16,66 @@
   "services": {
     "heading": "Wir produzieren für Sie",
     "items": [
-      { "title": "Commercials", "text": "Spots für TV, Kino und Online. Eine Idee, die in dreißig Sekunden sitzt.", "tags": "TV · Kino · Pre-Roll" },
-      { "title": "Musikvideos", "text": "Bilder, die so klingen wie der Song. Von der Performance bis zur Story.", "tags": "Video · Visualizer · Teaser" },
-      { "title": "Imagefilme", "text": "Ihr Unternehmen, wie es wirklich ist. Mit echten Menschen statt Bildschirmschoner.", "tags": "Website · Messe · Pitch" },
-      { "title": "Recruiting", "text": "Filme, nach denen sich die Richtigen bewerben, weil sie den Laden schon kennen.", "tags": "Karriereseite · Social Ads" },
-      { "title": "Social", "text": "Hochkant, schnell und für den Feed geschnitten. Am besten gleich als Serie.", "tags": "Reels · TikTok · Shorts" },
-      { "title": "Eventfilme", "text": "Die besten Momente des Tages als Erinnerung für Gäste und Sponsoren und als Werbung für das nächste Mal.", "tags": "Aftermovie · Highlights" },
-      { "title": "Post|produktion", "text": "Schnitt, Color Grading, Sound und Motion Design. Auch für Material, das schon da ist.", "tags": "Schnitt · Color · Sound" }
+      {
+        "title": "Commercials",
+        "text": "Spots für TV, Kino und Online. Eine Idee, die in dreißig Sekunden sitzt.",
+        "tags": "TV · Kino · Pre-Roll"
+      },
+      {
+        "title": "Musikvideos",
+        "text": "Bilder, die so klingen wie der Song. Von der Performance bis zur Story.",
+        "tags": "Video · Visualizer · Teaser"
+      },
+      {
+        "title": "Imagefilme",
+        "text": "Ihr Unternehmen, wie es wirklich ist. Mit echten Menschen statt Bildschirmschoner.",
+        "tags": "Website · Messe · Pitch"
+      },
+      {
+        "title": "Recruiting",
+        "text": "Filme, nach denen sich die Richtigen bewerben, weil sie den Laden schon kennen.",
+        "tags": "Karriereseite · Social Ads"
+      },
+      {
+        "title": "Social",
+        "text": "Hochkant, schnell und für den Feed geschnitten. Am besten gleich als Serie.",
+        "tags": "Reels · TikTok · Shorts"
+      },
+      {
+        "title": "Eventfilme",
+        "text": "Die besten Momente des Tages als Erinnerung für Gäste und Sponsoren und als Werbung für das nächste Mal.",
+        "tags": "Aftermovie · Highlights"
+      },
+      {
+        "title": "Post|produktion",
+        "text": "Schnitt, Color Grading, Sound und Motion Design. Auch für Material, das schon da ist.",
+        "tags": "Schnitt · Color · Sound"
+      }
     ]
   },
   "process": {
     "heading": "Vom Anruf zum Export",
     "steps": [
-      { "title": "Briefing", "text": "Wir reden über Ihr Ziel, Ihr Publikum und Ihr Budget. Danach wissen Sie, was realistisch ist." },
-      { "title": "Konzept", "text": "Idee, Treatment, Storyboard. Sie sehen den Film, bevor eine Kamera läuft." },
-      { "title": "Dreh", "text": "Crew, Licht, Location, Cast. Am Set kümmert sich Harry um alles, Sie schauen auf den Monitor." },
-      { "title": "Post", "text": "Schnitt, Grading, Sound. Sie geben Feedback, bis es sitzt." },
-      { "title": "Export", "text": "Alle Formate für alle Kanäle, fertig zum Hochladen." }
+      {
+        "title": "Briefing",
+        "text": "Wir reden über Ihr Ziel, Ihr Publikum und Ihr Budget. Danach wissen Sie, was realistisch ist."
+      },
+      {
+        "title": "Konzept",
+        "text": "Idee, Treatment, Storyboard. Sie sehen den Film, bevor eine Kamera läuft."
+      },
+      {
+        "title": "Dreh",
+        "text": "Crew, Licht, Location, Cast. Am Set kümmert sich Harry um alles, Sie schauen auf den Monitor."
+      },
+      {
+        "title": "Post",
+        "text": "Schnitt, Grading, Sound. Sie geben Feedback, bis es sitzt."
+      },
+      {
+        "title": "Export",
+        "text": "Alle Formate für alle Kanäle, fertig zum Hochladen."
+      }
     ]
   },
   "harry": {
@@ -54,7 +92,21 @@
     "quote": "ein echtes Level Up für visuelle Produktionen",
     "quoteAuthor": "Ufuk Karatag, CEO Camo Media",
     "label": "Im Einsatz für",
-    "names": ["ZDF", "G-Shock", "Universal", "Zalando", "Desperados", "Danfoss", "ver.di", "JGU", "Abenteuer Leben", "Club Of Dreamers", "Camo Media", "Mona Schulz Schmuck", "Credibil"]
+    "names": [
+      "ZDF",
+      "G-Shock",
+      "Universal",
+      "Zalando",
+      "Desperados",
+      "Danfoss",
+      "ver.di",
+      "JGU",
+      "Abenteuer Leben",
+      "Club Of Dreamers",
+      "Camo Media",
+      "Mona Schulz Schmuck",
+      "Credibil"
+    ]
   },
   "contact": {
     "heading": "Ihr Film fehlt noch.",
@@ -63,12 +115,35 @@
     "phone": "+49 172 153 9054",
     "address": "Niederberger Höhe 25, 56077 Koblenz",
     "formEndpoint": "",
-    "topics": ["Commercial", "Musikvideo", "Imagefilm", "Recruiting", "Social Media", "Eventfilm", "Postproduktion", "Noch offen"],
+    "topics": [
+      "Commercial",
+      "Musikvideo",
+      "Imagefilm",
+      "Recruiting",
+      "Social Media",
+      "Eventfilm",
+      "Postproduktion",
+      "Noch offen"
+    ],
     "legalNote": "Ihre Angaben nutzen wir nur für Ihre Anfrage. Mehr dazu in der",
     "social": [
-      { "label": "Instagram", "url": "https://www.instagram.com/harry_hollywood_/" },
-      { "label": "YouTube", "url": "https://www.youtube.com/@harryhollywood1186" },
-      { "label": "LinkedIn", "url": "https://www.linkedin.com/in/harryhollywood/" }
+      {
+        "label": "Instagram",
+        "url": "https://www.instagram.com/harry_hollywood_/"
+      },
+      {
+        "label": "YouTube",
+        "url": "https://www.youtube.com/@harryhollywood1186"
+      },
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/harryhollywood/"
+      }
     ]
+  },
+  "seo": {
+    "description": "Harry Hollywood aus Koblenz produziert Commercials, Musikvideos, Imagefilme, Recruiting-Videos, Social Content, Eventfilme und Postproduktion.",
+    "shareText": "Commercials, Musikvideos und Filme für Unternehmen.",
+    "hideFromSearch": true
   }
 }
