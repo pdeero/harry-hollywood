@@ -635,8 +635,6 @@ body.legal-page { padding-bottom: 0; }
   .reel-4 .tile-cap b { font-size: 16px; }
   .tl-v a { padding: 0; font-size: 0; }
   .tl-menu { display: block; }
-  .tl-name::after { content: " ▴"; color: var(--key); }
-  .tl:has(.tl-menu[aria-expanded="true"]) .tl-name::after { content: " ▾"; }
   .tl-read { width: 96px; }
   .tl-tc { font-size: 11px; }
   .hero-title { font-size: 26vw; }
