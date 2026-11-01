@@ -604,7 +604,9 @@ h2 {
   line-height: .9;
   margin-bottom: 32px;
 }
-.legal h2 { font-size: 34px; line-height: 1; margin-top: 36px; margin-bottom: 8px; font-stretch: 75%; }
+.legal h2 { font-size: clamp(26px, 7.5vw, 34px); line-height: 1.05; margin-top: 36px; margin-bottom: 8px; font-stretch: 75%; }
+/* Lange deutsche Wörter dürfen auf schmalen Bildschirmen nie aus dem Bild laufen. */
+.legal h1, .legal h2, .legal p { min-width: 0; hyphens: auto; overflow-wrap: break-word; }
 .legal p { margin-bottom: 12px; }
 .legal mark { background: var(--key); color: var(--ink); padding: 0 4px; }
 .legal-back { font-family: var(--mono); font-size: 12px; }
