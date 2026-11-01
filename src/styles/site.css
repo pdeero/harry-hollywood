@@ -192,6 +192,7 @@ h2 {
 .btn-line:hover { background: var(--ink); color: var(--paper); }
 .btn-line-paper { border-color: var(--paper); color: var(--paper); }
 .btn-line-paper:hover { background: var(--paper); color: var(--ink); }
+.btn[hidden] { display: none; }
 .btn-key { background: var(--key); border-color: var(--key); color: var(--ink); }
 .btn-key:hover { background: var(--spill); border-color: var(--spill); }
 
@@ -600,7 +601,8 @@ h2 {
 }
 .screen-info {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
   gap: 12px;
   align-items: start;
   padding: 18px;
@@ -644,7 +646,7 @@ body.legal-page { padding-bottom: 0; }
   .track-tc { right: 16px; }
   .sec-harry { grid-template-columns: minmax(0, 1fr); }
   .contact-grid { grid-template-columns: minmax(0, 1fr); }
-  .screen-info { grid-template-columns: minmax(0, 1fr); }
+  .screen-info { grid-auto-flow: row; }
 }
 /* Handy und Tablet: Clip-Namen passen nicht, die Leiste öffnet die Abschnittsliste. */
 @media (max-width: 1023px) {

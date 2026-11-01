@@ -601,6 +601,7 @@ void main(){
       poster.onerror = () => poster.remove();
       poster.src = tile.dataset.poster || '';
 
+      $('screen-lock').hidden = !youtubeAllowed;
       if (youtubeAllowed) {
         playFilm(tile, poster);
         dlg.showModal();
@@ -609,6 +610,7 @@ void main(){
       const ask = $('screen-ask').content.firstElementChild.cloneNode(true);
       ask.querySelector('button').addEventListener('click', () => {
         youtubeAllowed = true;
+        $('screen-lock').hidden = false;
         playFilm(tile, poster);
       });
       frameBox.replaceChildren(poster, ask);
@@ -655,6 +657,10 @@ void main(){
     $('hero-play').addEventListener('click', (e) => { e.preventDefault(); openScreen(e.currentTarget); });
     dlg.addEventListener('close', () => { stopWaiting(); frameBox.replaceChildren(); });
     $('screen-close').addEventListener('click', () => dlg.close());
+    $('screen-lock').addEventListener('click', () => {
+      youtubeAllowed = false;
+      dlg.close();
+    });
     dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
   }
 

@@ -16,7 +16,8 @@ Die Anmeldung läuft über „Mit GitHub anmelden“ und braucht ein GitHub-Kont
 - `src/pages/index.astro`: Aufbau der Startseite
 - `src/styles/site.css`, `src/scripts/main.js`: Design und Greenscreen
 - `public/bilder/`: Bilder
-- `public/admin/`: Sveltia CMS
+- `public/admin/`: Sveltia CMS, selbst gehostet (Version 0.248.0). Für ein Update `sveltia-cms.js` und `chunks/` aus dem npm-Paket `@sveltia/cms` tauschen
+- `public/_headers`: HTTP-Header der Website
 
 ## Lokal ansehen
 

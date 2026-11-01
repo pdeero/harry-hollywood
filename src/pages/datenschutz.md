@@ -9,7 +9,7 @@ Harry Filbert, Niederberger Höhe 25, 56077 Koblenz, hello@harryhollywood.com
 
 ## Hosting
 
-Diese Website liegt bei Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, USA. Beim Aufruf verarbeitet Cloudflare technische Daten wie IP-Adresse, Zeitpunkt und aufgerufene Seite. Außerdem kann Cloudflare Ihren Browser anweisen, technische Fehler beim Laden der Seite zu melden. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse ist es, die Website sicher und stabil auszuliefern und Angriffe abzuwehren. Informationen zu dieser Abwägung erhalten Sie auf Anfrage.
+Diese Website liegt bei Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, USA. Beim Aufruf verarbeitet Cloudflare technische Daten wie IP-Adresse, Zeitpunkt und aufgerufene Seite. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse ist es, die Website sicher und stabil auszuliefern und Angriffe abzuwehren. Informationen zu dieser Abwägung erhalten Sie auf Anfrage.
 
 Wie lange Cloudflare diese Protokolle aufbewahrt, legt Cloudflare fest. Für dieses Angebot ist keine feste Frist veröffentlicht. Die Daten werden gelöscht, sobald sie für Betrieb und Sicherheit nicht mehr nötig sind. Wir selbst werten sie nicht aus.
 
@@ -29,11 +29,11 @@ Unsere Filme liegen auf YouTube, einem Dienst der Google Ireland Limited, Gordon
 
 Das Showreel im Schriftzug der Startseite und alle Vorschaubilder liegen bei unserem Hoster Cloudflare, dafür wird keine Verbindung zu YouTube aufgebaut. Ein Film lädt erst von YouTube, wenn Sie ihn öffnen und im Filmfenster auf „Einwilligen und abspielen“ klicken. Erst dann erhält Google unter anderem Ihre IP-Adresse, speichert Daten auf Ihrem Gerät und liest sie aus. Google verarbeitet Nutzungsdaten für die Wiedergabe, für Statistik und für eigene Zwecke. Die Speicherdauer legt Google fest, in unserem Test trug ein Eintrag ein Ablaufdatum nach 30 Tagen. Mehr dazu steht in der [Datenschutzerklärung von Google](https://policies.google.com/privacy).
 
-Rechtsgrundlage ist Ihre Einwilligung durch diesen Klick nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Sie gilt für alle Filme bis zum Neuladen der Seite. Wir speichern Ihre Entscheidung nicht. Sie können die Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen, indem Sie die Seite neu laden. Bereits auf Ihrem Gerät gespeicherte Daten entfernen Sie, indem Sie die Browserdaten für youtube-nocookie.com löschen.
+Rechtsgrundlage ist Ihre Einwilligung durch diesen Klick nach Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG. Sie gilt für alle Filme bis zum Neuladen der Seite. Wir speichern Ihre Entscheidung nicht. Sie können die Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen, mit „YouTube sperren“ im Filmfenster oder indem Sie die Seite neu laden. Bereits auf Ihrem Gerät gespeicherte Daten entfernen Sie, indem Sie die Browserdaten für youtube-nocookie.com löschen.
 
 ## Verwaltungsbereich
 
-Die Inhalte dieser Website pflegen wir über einen Verwaltungsbereich unter /admin/. Wer ihn öffnet, lädt die Software Sveltia CMS vom Dienst unpkg.com, der dabei die IP-Adresse erhält. Die Anmeldung läuft über GitHub, einen Dienst der GitHub, Inc., 88 Colin P. Kelly Jr. St., San Francisco, CA 94107, USA, und setzt für 10 Minuten ein technisch notwendiges Cookie. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO und § 25 Abs. 2 TDDDG. Unser berechtigtes Interesse ist die sichere Pflege der Inhalte. Für Besucher der übrigen Website spielt das keine Rolle.
+Die Inhalte dieser Website pflegen wir über einen Verwaltungsbereich unter /admin/. Wer ihn öffnet, ruft Schriften von cdn.jsdelivr.net, Versionsdaten und Programmteile von unpkg.com sowie den Dienststatus von githubstatus.com ab. Diese Dienste erhalten dabei die IP-Adresse. Die Anmeldung läuft über GitHub, einen Dienst der GitHub, Inc., 88 Colin P. Kelly Jr. St., San Francisco, CA 94107, USA, und setzt für 10 Minuten ein technisch notwendiges Cookie. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO und § 25 Abs. 2 TDDDG. Unser berechtigtes Interesse ist die sichere Pflege der Inhalte. Für Besucher der übrigen Website spielt das keine Rolle.
 
 ## Cookies, Tracking, Schriften, Links
 

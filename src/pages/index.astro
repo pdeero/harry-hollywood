@@ -201,6 +201,7 @@ const trennbar = (t) => t.replaceAll('|', '­');
       <p class="screen-meta" id="screen-meta"></p>
     </div>
     <a class="btn btn-line-paper" id="screen-link" href="https://www.youtube.com/" rel="noopener" target="_blank">Auf YouTube ansehen</a>
+    <button class="btn btn-line-paper" type="button" id="screen-lock" hidden>YouTube sperren</button>
     <button class="btn btn-line-paper" type="button" id="screen-close">Schließen</button>
   </div>
 </dialog>
@@ -208,7 +209,7 @@ const trennbar = (t) => t.replaceAll('|', '­');
 <!-- Vor dem ersten Film im Vorführraum: Erst dieser Klick verbindet mit YouTube. -->
 <template id="screen-ask">
   <div class="screen-ask">
-    <p>Die Filme auf dieser Seite liegen auf YouTube. Mit „Einwilligen und abspielen“ erlauben Sie, dass Google Ireland Limited Ihre IP-Adresse erhält, Daten auf Ihrem Gerät speichert und ausliest (Dauer legt Google fest, in unserem Test bis zu 30 Tage) und Nutzungsdaten für Wiedergabe, Statistik und eigene Zwecke verarbeitet. Daten können in die USA gelangen. Die Einwilligung gilt für alle Filme bis zum Neuladen der Seite. Mit dem Neuladen widerrufen Sie sie für die Zukunft. <a href={pfad('/datenschutz/')}>Datenschutz</a></p>
+    <p>Die Filme auf dieser Seite liegen auf YouTube. Mit „Einwilligen und abspielen“ erlauben Sie, dass Google Ireland Limited Ihre IP-Adresse erhält, Daten auf Ihrem Gerät speichert und ausliest (Dauer legt Google fest, in unserem Test bis zu 30 Tage) und Nutzungsdaten für Wiedergabe, Statistik und eigene Zwecke verarbeitet. Daten können in die USA gelangen. Die Einwilligung gilt für alle Filme bis zum Neuladen der Seite. Mit „YouTube sperren“ im Filmfenster oder dem Neuladen widerrufen Sie sie für die Zukunft. <a href={pfad('/datenschutz/')}>Datenschutz</a></p>
     <button class="btn btn-key" type="button">Einwilligen und abspielen</button>
   </div>
 </template>
