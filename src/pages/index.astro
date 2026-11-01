@@ -50,7 +50,7 @@ const trennbar = (t) => t.replaceAll('|', '­');
   <section class="sec sec-ink" id="arbeiten" data-clip="Reel">
     <div class="sec-head">
       <h2>{reel.heading}</h2>
-      <p class="sec-note">{reel.note}</p>
+      {reel.note && <p class="sec-note">{reel.note}</p>}
     </div>
 
     <h3 class="reel-label">Commercials</h3>

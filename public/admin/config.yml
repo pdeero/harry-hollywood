@@ -79,7 +79,7 @@ collections:
             widget: object
             fields:
               - { name: heading, label: Überschrift, widget: string }
-              - { name: note, label: Hinweis, widget: string }
+              - { name: note, label: Hinweis, widget: string, required: false }
           - name: services
             label: Leistungen
             widget: object
