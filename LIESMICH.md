@@ -38,4 +38,4 @@ npm run dev
 
 ## Filme und Datenschutz
 
-Die Seite braucht keinen Cookie-Hinweis, solange beim Aufruf nichts von YouTube lädt. Showreel und Vorschaubilder liegen deshalb als eigene Dateien in `public/bilder/`. YouTube lädt erst im Filmfenster nach dem Klick auf „Film abspielen“. Bei neuen Videos im CMS ein eigenes Vorschaubild hochladen. Cloudflare Pages nimmt Dateien nur bis 25 MB an, das Showreel muss darunter bleiben.
+Die Seite braucht keinen Cookie-Hinweis, solange beim Aufruf nichts von YouTube lädt. Showreel und Vorschaubilder liegen deshalb als eigene Dateien in `public/bilder/`. YouTube lädt erst im Filmfenster nach dem Klick auf „Einwilligen und abspielen“. Bei neuen Videos im CMS ein eigenes Vorschaubild hochladen. Cloudflare Pages nimmt Dateien nur bis 25 MB an, das Showreel muss darunter bleiben. Den Spam-Schutz Turnstile im CMS nicht ohne Prüfung einschalten: Sein Skript lädt bei jedem Aufruf der Startseite und bräuchte dann eine Einwilligung.
