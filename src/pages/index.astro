@@ -160,8 +160,8 @@ const trennbar = (t) => t.replaceAll('|', '­');
         <div class="form-hp" aria-hidden="true">
           <label>Zusatz <input name="zusatz" type="text" tabindex="-1" autocomplete="off"></label>
         </div>
-        <!-- Turnstile: main.js lädt das Skript erst, wenn jemand das Formular benutzt. -->
-        {contact.turnstileKey && <div class="form-check" id="form-check" data-sitekey={contact.turnstileKey}></div>}
+        <!-- Spam-Schutz: Beim ersten Klick ins Formular rechnet der Browser eine Aufgabe von /api/altcha. -->
+        {contact.formEndpoint && <altcha-widget class="form-check" id="form-check" challenge="/api/altcha" display="invisible" auto="off"></altcha-widget>}
         <button class="btn btn-ink" type="submit">Anfrage senden</button>
         <p class="form-status" id="form-status" role="status"></p>
         <p class="form-legal">{contact.legalNote} <a href={pfad('/datenschutz/')}>Datenschutzerklärung</a>.</p>

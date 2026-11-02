@@ -45,4 +45,4 @@ Die Seite braucht keinen Cookie-Hinweis, solange beim Aufruf nichts von YouTube 
 
 ## Spam-Schutz
 
-Das Formular nimmt nur Anfragen mit gültigem Turnstile-Prüfzeichen an, der Server prüft es bei Cloudflare. Das Skript lädt erst, wenn jemand ins Formular klickt, beim Seitenaufruf bleibt es weg. Dafür braucht es den öffentlichen Schlüssel im CMS und `TURNSTILE_SECRET` als Geheimnis bei Cloudflare Pages. Fehlt das Geheimnis, geht keine Mail raus.
+Das Formular nutzt ALTCHA (Open Source, kein fremder Dienst). Beim ersten Klick ins Formular holt der Browser eine Rechenaufgabe von `/api/altcha` und löst sie im Hintergrund. `/api/anfrage` nimmt nur gelöste Aufgaben an, jede nur einmal, und höchstens fünf Anfragen pro Stunde je Adresse. Dafür braucht es `ALTCHA_SECRET` als Geheimnis bei Cloudflare Pages, fehlt es, geht keine Mail raus. Den Rechenaufwand regelt `functions/_altcha.js`. Formular-Dienste mit externem Skript brauchen eine Einwilligung.

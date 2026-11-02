@@ -8,6 +8,8 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "altcha": "3.5.0",
+    "altcha-lib": "2.8.0",
     "astro": "7.4.4"
   }
 }

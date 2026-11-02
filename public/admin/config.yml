@@ -142,7 +142,6 @@ collections:
               - { name: phone, label: Telefon, widget: string }
               - { name: address, label: Adresse, widget: string }
               - { name: formEndpoint, label: Adresse des Formular-Dienstes, widget: string, required: false, hint: "Leer lassen, dann öffnet das Formular eine fertige E-Mail" }
-              - { name: turnstileKey, label: Turnstile-Websiteschlüssel, widget: string, required: false, hint: "Öffentlicher Schlüssel für den Spam-Schutz. Nicht leeren: Ohne ihn lehnt der Server jede Anfrage ab" }
               - name: topics
                 label: Themen im Formular
                 label_singular: Thema

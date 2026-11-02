@@ -1,8 +1,12 @@
 // Nimmt Anfragen aus dem Kontaktformular an und schickt sie an Harrys Postfach.
-// Einstellungen bei Cloudflare Pages: RESEND_API_KEY und TURNSTILE_SECRET (Pflicht),
+// Einstellungen bei Cloudflare Pages: RESEND_API_KEY und ALTCHA_SECRET (Pflicht),
 // MAIL_TO und MAIL_FROM (optional). Ohne Spam-Schutz geht keine Mail raus.
 
-const SEITEN = ['harryhollywood.com', 'harry-hollywood.pages.dev'];
+import { verifySolution } from 'altcha-lib';
+import { deriveKey } from 'altcha-lib/algorithms/pbkdf2';
+import { GUELTIG_MINUTEN } from '../_altcha.js';
+
+const ANFRAGEN_PRO_STUNDE = 5;
 
 const antwort = (status, ok) => new Response(JSON.stringify({ ok }), {
   status,
@@ -11,28 +15,48 @@ const antwort = (status, ok) => new Response(JSON.stringify({ ok }), {
 
 const text = (form, name, max) => String(form.get(name) ?? '').trim().slice(0, max);
 
-async function spamfrei(env, form, request) {
-  const token = text(form, 'cf-turnstile-response', 4096);
-  if (!token) return false;
-  const body = new FormData();
-  body.append('secret', env.TURNSTILE_SECRET);
-  body.append('response', token);
-  body.append('remoteip', request.headers.get('cf-connecting-ip') ?? '');
+const hash = async (wert) => {
+  const bytes = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(wert));
+  return [...new Uint8Array(bytes)].map((b) => b.toString(16).padStart(2, '0')).join('');
+};
+
+// Merkzettel im Cloudflare-Cache. Er gilt je Rechenzentrum, das reicht als Bremse.
+const zettel = async (art, wert, env) => new Request(`https://www.harryhollywood.com/_${art}/${await hash(env.ALTCHA_SECRET + wert)}`);
+const merke = (anfrage, inhalt, sekunden) => caches.default.put(anfrage, new Response(String(inhalt), {
+  headers: { 'cache-control': `max-age=${sekunden}` },
+}));
+
+async function geloest(env, form) {
+  let payload;
   try {
-    const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', { method: 'POST', body });
-    const data = await res.json();
-    const seite = String(data.hostname ?? '');
-    return data.success === true
-      && data.action === 'anfrage'
-      && SEITEN.some((s) => seite === s || seite.endsWith(`.${s}`));
+    payload = JSON.parse(atob(text(form, 'altcha', 8192)));
   } catch {
-    // Ist die Prüfung nicht erreichbar, geht lieber nichts durch als alles.
+    return false;
+  }
+  try {
+    const ergebnis = await verifySolution({ ...payload, deriveKey, hmacSignatureSecret: env.ALTCHA_SECRET });
+    if (!ergebnis.verified) return false;
+    // Jede Lösung gilt nur einmal.
+    const benutzt = await zettel('benutzt', payload.challenge.signature, env);
+    if (await caches.default.match(benutzt)) return false;
+    await merke(benutzt, 1, GUELTIG_MINUTEN * 60);
+    return true;
+  } catch {
     return false;
   }
 }
 
+async function unterGrenze(env, request) {
+  const ip = await zettel('ip', request.headers.get('cf-connecting-ip') ?? '', env);
+  const treffer = await caches.default.match(ip);
+  const anzahl = Number(treffer ? await treffer.text() : 0);
+  if (anzahl >= ANFRAGEN_PRO_STUNDE) return false;
+  await merke(ip, anzahl + 1, 3600);
+  return true;
+}
+
 export async function onRequestPost({ request, env }) {
-  if (!env.RESEND_API_KEY || !env.TURNSTILE_SECRET) return antwort(503, false);
+  if (!env.RESEND_API_KEY || !env.ALTCHA_SECRET) return antwort(503, false);
 
   let form;
   try {
@@ -49,7 +73,8 @@ export async function onRequestPost({ request, env }) {
   const art = text(form, 'art', 100);
   const nachricht = text(form, 'nachricht', 5000);
   if (!name || !nachricht || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return antwort(400, false);
-  if (!(await spamfrei(env, form, request))) return antwort(403, false);
+  if (!(await geloest(env, form))) return antwort(403, false);
+  if (!(await unterGrenze(env, request))) return antwort(429, false);
 
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',

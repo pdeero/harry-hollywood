@@ -25,9 +25,9 @@ Führt Ihre Anfrage nicht zu einem Auftrag, löschen wir sie spätestens nach 6 
 
 ## Spam-Schutz im Formular
 
-Damit keine automatisierten Anfragen bei uns landen, nutzen wir Turnstile von Cloudflare, Inc. (Anschrift unter Hosting). Turnstile lädt erst, wenn Sie das Formular benutzen, also ein Feld anklicken oder die Anfrage absenden. Dann erhält Cloudflare Ihre IP-Adresse sowie technische Angaben zu Browser und Gerät, die dafür auf Ihrem Gerät ausgelesen werden, und ermittelt daraus, ob ein Mensch das Formular nutzt. Unser Server erhält nur das Ergebnis der Prüfung.
+Damit keine automatisierten Anfragen bei uns landen, löst Ihr Browser beim ersten Klick ins Formular im Hintergrund eine kleine Rechenaufgabe. Das dafür nötige Programm (ALTCHA) und die Aufgabe kommen von unserer eigenen Website. Es werden dabei keine Daten an weitere Anbieter übertragen, keine Cookies gesetzt und keine Daten auf Ihrem Gerät ausgelesen.
 
-Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse ist der Schutz vor Spam und Missbrauch. Das Auslesen stützen wir auf § 25 Abs. 2 Nr. 2 TDDDG, weil es für das von Ihnen gewünschte Absenden nötig ist. Ohne diese Prüfung nehmen wir Anfragen über das Formular nicht an, Sie erreichen uns dann per E-Mail oder Telefon. Mehr dazu steht in den [Datenschutzhinweisen von Cloudflare](https://www.cloudflare.com/turnstile-privacy-policy/).
+Um Missbrauch zu begrenzen, zählt unser Server die Anfragen je IP-Adresse. Dafür speichert er bei unserem Hoster Cloudflare bis zu einer Stunde einen nicht lesbaren Prüfwert (Hash) Ihrer IP-Adresse. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse ist der Schutz vor Spam und Missbrauch.
 
 ## YouTube-Videos
 

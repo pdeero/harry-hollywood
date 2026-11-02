@@ -823,41 +823,33 @@ void main(){
   function setupForm() {
     const form = $('form'), status = $('form-status'), check = $('form-check');
     const pause = (ms) => new Promise((fertig) => setTimeout(fertig, ms));
-    let geladen = false, gesperrt = false;
+    let widget;
 
-    // Turnstile lädt erst hier, beim Aufruf der Seite geht nichts an Cloudflare Challenges.
+    // ALTCHA lädt erst hier und startet sofort, so ist die Aufgabe meist gelöst, bevor jemand fertig getippt hat.
     function ladePruefung() {
-      if (!check || geladen) return;
-      geladen = true;
-      window.pruefungBereit = () => window.turnstile.render(check, {
-        sitekey: check.dataset.sitekey,
-        action: 'anfrage',
-        language: 'de',
-        appearance: 'interaction-only',
-        'before-interactive-callback': () => {
-          check.classList.add('offen');
-          status.textContent = 'Bitte bestätigen Sie kurz, dass Sie ein Mensch sind.';
-        },
-        'after-interactive-callback': () => check.classList.remove('offen'),
+      widget ??= import('altcha').then(async () => {
+        await customElements.whenDefined('altcha-widget');
+        while (!check.verify) await pause(50);
+        check.verify();
       });
-      const script = document.createElement('script');
-      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=pruefungBereit';
-      script.onerror = () => { gesperrt = true; };
-      document.head.append(script);
+      return widget;
     }
 
-    // Wartet auf das Prüfzeichen. Meist ist es da, bevor jemand fertig getippt hat.
+    // Wartet auf die Lösung. Eine abgelaufene Aufgabe wird neu gerechnet.
     async function pruefzeichen() {
       if (!check) return true;
-      ladePruefung();
-      for (let i = 0; i < 150 && !gesperrt; i++) {
-        if (new FormData(form).get('cf-turnstile-response')) return true;
+      await ladePruefung();
+      if (['unverified', 'expired', 'error'].includes(check.getState())) check.verify();
+      for (let i = 0; i < 200; i++) {
+        const stand = check.getState();
+        if (stand === 'verified' && new FormData(form).get('altcha')) return true;
+        if (stand === 'error') return false;
         await pause(300);
       }
       return false;
     }
 
-    form.addEventListener('focusin', ladePruefung, { once: true });
+    if (check) form.addEventListener('focusin', () => ladePruefung().catch(() => {}), { once: true });
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const url = form.dataset.endpoint;
@@ -886,8 +878,8 @@ void main(){
       } catch {
         status.textContent = `Das hat nicht geklappt. Bitte schreiben Sie an ${form.dataset.mail}.`;
       }
-      // Jedes Prüfzeichen gilt nur einmal.
-      if (check) window.turnstile?.reset(check);
+      // Jede Lösung gilt nur einmal.
+      check?.reset?.();
       button.disabled = false;
     });
   }
