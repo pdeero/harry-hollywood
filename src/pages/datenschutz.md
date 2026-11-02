@@ -23,6 +23,12 @@ Anfragen über das Formular erreichen uns in einem Postfach bei Google Ireland L
 
 Führt Ihre Anfrage nicht zu einem Auftrag, löschen wir sie spätestens nach 6 Monaten. Kommt ein Auftrag zustande, bewahren wir die Korrespondenz sechs Jahre und Rechnungen acht Jahre auf, jeweils ab Ende des Kalenderjahres. Rechtsgrundlage ist dann Art. 6 Abs. 1 lit. c DSGVO.
 
+## Spam-Schutz im Formular
+
+Damit keine automatisierten Anfragen bei uns landen, nutzen wir Turnstile von Cloudflare, Inc. (Anschrift unter Hosting). Turnstile lädt erst, wenn Sie das Formular benutzen, also ein Feld anklicken oder die Anfrage absenden. Dann erhält Cloudflare Ihre IP-Adresse sowie technische Angaben zu Browser und Gerät, die dafür auf Ihrem Gerät ausgelesen werden, und ermittelt daraus, ob ein Mensch das Formular nutzt. Unser Server erhält nur das Ergebnis der Prüfung.
+
+Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse ist der Schutz vor Spam und Missbrauch. Das Auslesen stützen wir auf § 25 Abs. 2 Nr. 2 TDDDG, weil es für das von Ihnen gewünschte Absenden nötig ist. Ohne diese Prüfung nehmen wir Anfragen über das Formular nicht an, Sie erreichen uns dann per E-Mail oder Telefon. Mehr dazu steht in den [Datenschutzhinweisen von Cloudflare](https://www.cloudflare.com/turnstile-privacy-policy/).
+
 ## YouTube-Videos
 
 Unsere Filme liegen auf YouTube, einem Dienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Wir binden sie im erweiterten Datenschutzmodus ein.

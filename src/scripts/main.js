@@ -821,7 +821,43 @@ void main(){
   /* ---------- 5. Formular ---------- */
 
   function setupForm() {
-    const form = $('form'), status = $('form-status');
+    const form = $('form'), status = $('form-status'), check = $('form-check');
+    const pause = (ms) => new Promise((fertig) => setTimeout(fertig, ms));
+    let geladen = false, gesperrt = false;
+
+    // Turnstile lädt erst hier, beim Aufruf der Seite geht nichts an Cloudflare Challenges.
+    function ladePruefung() {
+      if (!check || geladen) return;
+      geladen = true;
+      window.pruefungBereit = () => window.turnstile.render(check, {
+        sitekey: check.dataset.sitekey,
+        action: 'anfrage',
+        language: 'de',
+        appearance: 'interaction-only',
+        'before-interactive-callback': () => {
+          check.classList.add('offen');
+          status.textContent = 'Bitte bestätigen Sie kurz, dass Sie ein Mensch sind.';
+        },
+        'after-interactive-callback': () => check.classList.remove('offen'),
+      });
+      const script = document.createElement('script');
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=pruefungBereit';
+      script.onerror = () => { gesperrt = true; };
+      document.head.append(script);
+    }
+
+    // Wartet auf das Prüfzeichen. Meist ist es da, bevor jemand fertig getippt hat.
+    async function pruefzeichen() {
+      if (!check) return true;
+      ladePruefung();
+      for (let i = 0; i < 150 && !gesperrt; i++) {
+        if (new FormData(form).get('cf-turnstile-response')) return true;
+        await pause(300);
+      }
+      return false;
+    }
+
+    form.addEventListener('focusin', ladePruefung, { once: true });
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const url = form.dataset.endpoint;
@@ -837,6 +873,8 @@ void main(){
       button.disabled = true;
       status.textContent = 'Anfrage wird gesendet.';
       try {
+        if (!(await pruefzeichen())) throw new Error('Prüfung');
+        status.textContent = 'Anfrage wird gesendet.';
         const res = await fetch(url, {
           method: 'POST',
           headers: { Accept: 'application/json' },
@@ -848,7 +886,8 @@ void main(){
       } catch {
         status.textContent = `Das hat nicht geklappt. Bitte schreiben Sie an ${form.dataset.mail}.`;
       }
-      window.turnstile?.reset();
+      // Jedes Prüfzeichen gilt nur einmal.
+      if (check) window.turnstile?.reset(check);
       button.disabled = false;
     });
   }

@@ -158,10 +158,10 @@ const trennbar = (t) => t.replaceAll('|', '­');
         </div>
         <!-- Für Menschen unsichtbar: Füllt ein Bot das Feld aus, wird die Anfrage verworfen. -->
         <div class="form-hp" aria-hidden="true">
-          <label>Website <input name="website" type="text" tabindex="-1" autocomplete="off"></label>
+          <label>Zusatz <input name="zusatz" type="text" tabindex="-1" autocomplete="off"></label>
         </div>
-        {contact.turnstileKey && <div class="cf-turnstile" data-sitekey={contact.turnstileKey} data-language="de"></div>}
-        {contact.turnstileKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+        <!-- Turnstile: main.js lädt das Skript erst, wenn jemand das Formular benutzt. -->
+        {contact.turnstileKey && <div class="form-check" id="form-check" data-sitekey={contact.turnstileKey}></div>}
         <button class="btn btn-ink" type="submit">Anfrage senden</button>
         <p class="form-status" id="form-status" role="status"></p>
         <p class="form-legal">{contact.legalNote} <a href={pfad('/datenschutz/')}>Datenschutzerklärung</a>.</p>

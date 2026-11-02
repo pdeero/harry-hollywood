@@ -126,7 +126,7 @@
       "Postproduktion",
       "Noch offen"
     ],
-    "legalNote": "Ihre Angaben nutzen wir, um Ihre Anfrage zu bearbeiten. Mehr dazu in der",
+    "legalNote": "Ihre Angaben nutzen wir, um Ihre Anfrage zu bearbeiten. Sobald Sie das Formular benutzen, prüft Cloudflare Turnstile, ob ein Mensch schreibt. Mehr dazu in der",
     "social": [
       {
         "label": "Instagram",
@@ -141,7 +141,7 @@
         "url": "https://www.linkedin.com/in/harryhollywood/"
       }
     ],
-    "turnstileKey": ""
+    "turnstileKey": "0x4AAAAAAFwfuDHnuGkjc5pB"
   },
   "seo": {
     "description": "Harry Hollywood aus Koblenz produziert Commercials, Musikvideos, Imagefilme, Recruiting-Videos, Social Content, Eventfilme und Postproduktion.",

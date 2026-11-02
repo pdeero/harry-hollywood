@@ -1,6 +1,8 @@
 // Nimmt Anfragen aus dem Kontaktformular an und schickt sie an Harrys Postfach.
-// Einstellungen bei Cloudflare Pages: RESEND_API_KEY (Pflicht), TURNSTILE_SECRET (Spam-Schutz),
-// MAIL_TO und MAIL_FROM (optional).
+// Einstellungen bei Cloudflare Pages: RESEND_API_KEY und TURNSTILE_SECRET (Pflicht),
+// MAIL_TO und MAIL_FROM (optional). Ohne Spam-Schutz geht keine Mail raus.
+
+const SEITEN = ['harryhollywood.com', 'harry-hollywood.pages.dev'];
 
 const antwort = (status, ok) => new Response(JSON.stringify({ ok }), {
   status,
@@ -10,18 +12,27 @@ const antwort = (status, ok) => new Response(JSON.stringify({ ok }), {
 const text = (form, name, max) => String(form.get(name) ?? '').trim().slice(0, max);
 
 async function spamfrei(env, form, request) {
-  if (!env.TURNSTILE_SECRET) return true;
+  const token = text(form, 'cf-turnstile-response', 4096);
+  if (!token) return false;
   const body = new FormData();
   body.append('secret', env.TURNSTILE_SECRET);
-  body.append('response', text(form, 'cf-turnstile-response', 4096));
+  body.append('response', token);
   body.append('remoteip', request.headers.get('cf-connecting-ip') ?? '');
-  const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', { method: 'POST', body });
-  const data = await res.json();
-  return data.success === true;
+  try {
+    const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', { method: 'POST', body });
+    const data = await res.json();
+    const seite = String(data.hostname ?? '');
+    return data.success === true
+      && data.action === 'anfrage'
+      && SEITEN.some((s) => seite === s || seite.endsWith(`.${s}`));
+  } catch {
+    // Ist die Prüfung nicht erreichbar, geht lieber nichts durch als alles.
+    return false;
+  }
 }
 
 export async function onRequestPost({ request, env }) {
-  if (!env.RESEND_API_KEY) return antwort(503, false);
+  if (!env.RESEND_API_KEY || !env.TURNSTILE_SECRET) return antwort(503, false);
 
   let form;
   try {
@@ -31,7 +42,7 @@ export async function onRequestPost({ request, env }) {
   }
 
   // Dieses Feld ist für Menschen unsichtbar. Ist es gefüllt, war es ein Bot.
-  if (form.get('website')) return antwort(200, true);
+  if (form.get('zusatz')) return antwort(200, true);
 
   const name = text(form, 'name', 200);
   const email = text(form, 'email', 200);
